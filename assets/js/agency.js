@@ -6,7 +6,7 @@
    ========================================================================== */
 
 /* ---------- Pôles de services ---------- */
-const POLES = [
+const POLES = window.JG_EN?.POLES || [
   {
     id: "logiciel",
     icon: "bi-code-slash",
@@ -137,7 +137,7 @@ const POLES = [
 ];
 
 /* ---------- Domaines d'intervention ---------- */
-const DOMAINS = [
+const DOMAINS = window.JG_EN?.DOMAINS || [
   ["bi-stars", "Intelligence artificielle"],
   ["bi-graph-up-arrow", "Data & analyse"],
   ["bi-shield-lock", "Cybersécurité"],
@@ -165,7 +165,7 @@ const DOMAINS = [
 ];
 
 /* ---------- Méthodologie ---------- */
-const METHOD = [
+const METHOD = window.JG_EN?.METHOD || [
   { t: "Écouter", d: "Un premier échange pour comprendre votre besoin, votre public et vos contraintes. Une responsable vous répond sous 48 heures.", out: "Note de cadrage" },
   { t: "Comprendre le terrain", d: "Entretiens, enquêtes, visites : nous partons de la réalité de vos utilisatrices, pas de suppositions.", out: "Synthèse terrain" },
   { t: "Concevoir", d: "Parcours, maquettes et prototype interactif, validés avec vous avant de développer quoi que ce soit.", out: "Prototype et devis détaillé" },
@@ -175,7 +175,7 @@ const METHOD = [
 ];
 
 /* ---------- Nos réalisations : sites livrés et en ligne (captures dans assets/img/real-*.jpg) ---------- */
-const REALISATIONS = [
+const REALISATIONS = window.JG_EN?.REALISATIONS || [
   { name: "Colombe Academy of Technology", url: "https://www.cat.sn/", shot: "real-cat.jpg",
     sector: "Éducation", kind: "Site institutionnel", poles: ["logiciel", "design"],
     text: "Le site de la CAT, école de technologie à Dakar : formations, certifications, cyber-range, blog et admissions." },
@@ -205,6 +205,7 @@ const REALISATIONS = [
 /* ---------- Portfolio : réalisations Jongoma et projets types (pas des références clients) ---------- */
 const WORKS = [
   ...REALISATIONS.map((r) => ({ real: true, title: r.name, poles: r.poles, domain: r.sector, photo: r.shot, text: r.text, link: r.url, soon: !r.url })),
+  ...(window.JG_EN?.WORKS_EXTRA || [
   { real: true, title: "La plateforme Jongoma", poles: ["logiciel", "design", "cloud"], domain: "Réseaux sociaux & communautés", photo: "communaute.jpg",
     text: "Espace client complet : demandes et dossiers suivis étape par étape, devis et reçus, pièces jointes, Communauté entre femmes et Discussions avec messages vocaux.", link: "plateforme.html" },
   { real: true, title: "Le site Jongoma Tech", poles: ["design", "logiciel", "creation"], domain: "Design & prototypage", photo: "hero.jpg",
@@ -225,10 +226,11 @@ const WORKS = [
     text: "Chaque visite, chaque dépense et chaque photo du chantier accessibles depuis l'étranger, avec reçus et position GPS." },
   { title: "Infogérance d'une petite entreprise", poles: ["support", "cyber"], domain: "Solutions sur mesure", photo: "equipe.jpg",
     text: "Messagerie professionnelle, postes configurés, sauvegardes, formation de l'équipe et suivi des incidents." },
+  ]),
 ];
 
 /* ---------- Ressources ---------- */
-const RESOURCES = [
+const RESOURCES = window.JG_EN?.RESOURCES || [
   { id: "brief", type: "Modèle", icon: "bi-file-earmark-text", title: "Le brief de projet en 10 questions",
     desc: "Les questions à vous poser avant de lancer un site, une application ou une campagne.",
     body: `<ol>
@@ -316,7 +318,7 @@ const RESOURCES = [
 ];
 
 /* ---------- Blog ---------- */
-const POSTS = [
+const POSTS = window.JG_EN?.POSTS || [
   { slug: "startup-feminine", cat: "Jongoma", photo: "equipe.jpg", read: 4,
     title: "Pourquoi une startup tech 100 % féminine ?",
     excerpt: "Les femmes sont les premières touchées par les maux de notre société et les dernières servies par la technologie. Nous avons décidé de changer cela, de l'intérieur.",
@@ -406,7 +408,7 @@ function renderPoles() {
           <span class="pole-n">${pad(i + 1)}</span>
           <span class="pole-title"><span class="roll"><span>${escA(p.title)}</span><span aria-hidden="true">${escA(p.title)}</span></span></span>
           <span class="pole-lead">${escA(p.lead)}</span>
-          <span class="pole-more"><span class="label-more">Voir plus</span><span class="label-less">Voir moins</span><i class="bi bi-plus-lg"></i></span>
+          <span class="pole-more"><span class="label-more">${tr("Voir plus", "See more")}</span><span class="label-less">${tr("Voir moins", "See less")}</span><i class="bi bi-plus-lg"></i></span>
         </button>
         <div class="collapse" id="${id}">
           <div class="pole-body row g-4">
@@ -414,12 +416,12 @@ function renderPoles() {
               <p class="fs-5 text-cream d-lg-none">${escA(p.lead)}</p>
               <p class="text-soft">${escA(p.text)}</p>
               <div class="d-flex flex-wrap gap-2 mt-4">
-                <a class="btn btn-gold" href="projet.html?pole=${p.id}">Lancer un projet</a>
-                <a class="btn btn-ghost" href="portfolio.html?pole=${p.id}">Exemples de projets</a>
+                <a class="btn btn-gold" href="${page("projet.html")}?pole=${p.id}">${tr("Lancer un projet", "Start a project")}</a>
+                <a class="btn btn-ghost" href="${page("portfolio.html")}?pole=${p.id}">${tr("Exemples de projets", "Project examples")}</a>
               </div>
             </div>
             <div class="col-lg-4">
-              <p class="kicker mb-3">Ce que nous faisons</p>
+              <p class="kicker mb-3">${tr("Ce que nous faisons", "What we do")}</p>
               <ul class="pole-items">${p.items.map((x) => `<li>${escA(x)}</li>`).join("")}</ul>
             </div>
             <div class="col-lg-2 d-none d-lg-block"><div class="arch h-100" style="min-height:14rem"><img src="assets/img/${p.photo}" alt="" loading="lazy"></div></div>
@@ -443,7 +445,7 @@ function renderRealisations() {
       if (r.app) return `
       <article class="rc rc-app ${i % 2 ? "rc-flip" : ""} reveal">
         <div class="rc-phones">
-          ${r.screens.map((src, k) => `<div class="rc-phone ${k ? "back" : "front"}"><img src="assets/img/${src}" alt="Écran de l'application ${escA(r.name)}" loading="lazy"></div>`).join("")}
+          ${r.screens.map((src, k) => `<div class="rc-phone ${k ? "back" : "front"}"><img src="assets/img/${src}" alt="${tr("Écran de l'application", "Screen of the app")} ${escA(r.name)}" loading="lazy"></div>`).join("")}
         </div>
         <div class="rc-info">
           <div class="sc-count"><b>${pad(i + 1)}</b><span>/ ${total}</span></div>
@@ -452,25 +454,25 @@ function renderRealisations() {
           <p class="text-soft mb-4">${escA(r.text)}</p>
           <div class="d-flex flex-wrap gap-2 mb-4">${r.poles.map((id) => `<span class="tag-ed">${escA(poleById(id).title)}</span>`).join("")}</div>
           <div class="stores">
-            <span class="store" aria-disabled="true"><i class="bi bi-apple"></i><span><small>Bientôt sur</small>App Store</span></span>
-            <span class="store" aria-disabled="true"><i class="bi bi-google-play"></i><span><small>Bientôt sur</small>Google Play</span></span>
+            <span class="store" aria-disabled="true"><i class="bi bi-apple"></i><span><small>${tr("Bientôt sur", "Coming soon on")}</small>App Store</span></span>
+            <span class="store" aria-disabled="true"><i class="bi bi-google-play"></i><span><small>${tr("Bientôt sur", "Coming soon on")}</small>Google Play</span></span>
           </div>
         </div>
       </article>`;
       const frameInner = `
-          <span class="sc-bar"><i></i><i></i><i></i><span class="sc-url">${r.url ? `<i class="bi bi-lock-fill"></i> ${host(r.url)}` : '<i class="bi bi-hourglass-split"></i> Bientôt en ligne'}</span></span>
-          <span class="rc-shot"><img src="assets/img/${r.shot}" alt="Page d'accueil de ${escA(r.name)}" loading="lazy"></span>
-          ${r.url ? '<span class="sc-visit">Visiter le site <i class="bi bi-arrow-up-right"></i></span>' : '<span class="sc-visit rc-soon">Bientôt disponible</span>'}`;
+          <span class="sc-bar"><i></i><i></i><i></i><span class="sc-url">${r.url ? `<i class="bi bi-lock-fill"></i> ${host(r.url)}` : `<i class="bi bi-hourglass-split"></i> ${tr("Bientôt en ligne", "Coming online soon")}`}</span></span>
+          <span class="rc-shot"><img src="assets/img/${r.shot}" alt="${tr("Page d'accueil de", "Home page of")} ${escA(r.name)}" loading="lazy"></span>
+          ${r.url ? `<span class="sc-visit">${tr("Visiter le site", "Visit the site")} <i class="bi bi-arrow-up-right"></i></span>` : `<span class="sc-visit rc-soon">${tr("Bientôt disponible", "Coming soon")}</span>`}`;
       return `
       <article class="rc ${i % 2 ? "rc-flip" : ""} reveal">
-        ${r.url ? `<a class="rc-frame" href="${r.url}" target="_blank" rel="noopener" aria-label="Visiter ${escA(r.name)} (nouvel onglet)">${frameInner}</a>` : `<div class="rc-frame">${frameInner}</div>`}
+        ${r.url ? `<a class="rc-frame" href="${r.url}" target="_blank" rel="noopener" aria-label="${tr("Visiter", "Visit")} ${escA(r.name)} (${tr("nouvel onglet", "new tab")})">${frameInner}</a>` : `<div class="rc-frame">${frameInner}</div>`}
         <div class="rc-info">
           <div class="sc-count"><b>${pad(i + 1)}</b><span>/ ${total}</span></div>
           <p class="small-label mt-3 mb-2">${escA(r.kind)} · ${escA(r.sector)}</p>
           <h3 class="font-display text-cream mb-3">${escA(r.name)}</h3>
           <p class="text-soft mb-4">${escA(r.text)}</p>
           <div class="d-flex flex-wrap gap-2 mb-4">${r.poles.map((id) => `<span class="tag-ed">${escA(poleById(id).title)}</span>`).join("")}</div>
-          ${r.url ? `<a class="btn btn-gold" href="${r.url}" target="_blank" rel="noopener">Visiter ${escA(host(r.url))} <i class="bi bi-arrow-up-right ms-1"></i></a>` : '<span class="btn btn-ghost disabled" aria-disabled="true"><i class="bi bi-hourglass-split me-1"></i> Lien bientôt disponible</span>'}
+          ${r.url ? `<a class="btn btn-gold" href="${r.url}" target="_blank" rel="noopener">${tr("Visiter", "Visit")} ${escA(host(r.url))} <i class="bi bi-arrow-up-right ms-1"></i></a>` : `<span class="btn btn-ghost disabled" aria-disabled="true"><i class="bi bi-hourglass-split me-1"></i> ${tr("Lien bientôt disponible", "Link coming soon")}</span>`}
         </div>
       </article>`;
     }).join("");
@@ -482,7 +484,7 @@ function renderDomains() {
   document.querySelectorAll("[data-domains]").forEach((root) => {
     root.innerHTML = DOMAINS.map(
       ([icon, label]) => `
-      <div class="domain reveal"><i class="bi ${icon}"></i><span class="small-label">Domaine</span><strong>${escA(label)}</strong></div>`,
+      <div class="domain reveal"><i class="bi ${icon}"></i><span class="small-label">${tr("Domaine", "Sector")}</span><strong>${escA(label)}</strong></div>`,
     ).join("");
   });
 }
@@ -522,7 +524,7 @@ function renderPortfolio() {
   const filters = document.getElementById("work-filters");
   let current = new URLSearchParams(location.search).get("pole") || "all";
   if (current !== "all" && !poleById(current)) current = "all";
-  filters.innerHTML = [["all", "Tout"], ...POLES.map((p) => [p.id, p.title])]
+  filters.innerHTML = [["all", tr("Tout", "All")], ...POLES.map((p) => [p.id, p.title])]
     .map(([id, label]) => `<button type="button" class="tab-ed" data-work="${id}">${escA(label)}</button>`)
     .join("");
   const draw = () => {
@@ -533,13 +535,13 @@ function renderPortfolio() {
         (w, i) => `
       <article class="work reveal">
         <div class="work-ph"><img src="assets/img/${w.photo}" alt="" loading="lazy">
-          <span class="work-badge ${w.real ? "real" : ""}">${w.real ? '<i class="bi bi-patch-check-fill me-1"></i>Réalisation Jongoma' : "Projet type"}</span></div>
+          <span class="work-badge ${w.real ? "real" : ""}">${w.real ? `<i class="bi bi-patch-check-fill me-1"></i>${tr("Réalisation Jongoma", "Built by Jongoma")}` : tr("Projet type", "Sample project")}</span></div>
         <div class="work-body">
           <p class="small-label mb-2">${escA(w.domain)}</p>
           <h3 class="font-display h5 text-cream">${escA(w.title)}</h3>
           <p class="small text-soft">${escA(w.text)}</p>
           <div class="d-flex flex-wrap gap-1 mb-3">${w.poles.map((id) => `<span class="tag-ed">${escA(poleById(id).title)}</span>`).join("")}</div>
-          ${w.soon ? '<span class="link-gold opacity-75"><i class="bi bi-hourglass-split me-1"></i>Bientôt en ligne</span>' : w.link ? (w.link.startsWith("http") ? `<a class="link-gold" href="${w.link}" target="_blank" rel="noopener">Visiter le site <i class="bi bi-box-arrow-up-right"></i></a>` : `<a class="link-gold" href="${w.link}">Voir <i class="bi bi-arrow-right"></i></a>`) : `<a class="link-gold" href="projet.html?pole=${w.poles[0]}">Un projet similaire ? <i class="bi bi-arrow-right"></i></a>`}
+          ${w.soon ? `<span class="link-gold opacity-75"><i class="bi bi-hourglass-split me-1"></i>${tr("Bientôt en ligne", "Coming online soon")}</span>` : w.link ? (w.link.startsWith("http") ? `<a class="link-gold" href="${w.link}" target="_blank" rel="noopener">${tr("Visiter le site", "Visit the site")} <i class="bi bi-box-arrow-up-right"></i></a>` : `<a class="link-gold" href="${page(w.link)}">${tr("Voir", "View")} <i class="bi bi-arrow-right"></i></a>`) : `<a class="link-gold" href="${page("projet.html")}?pole=${w.poles[0]}">${tr("Un projet similaire ?", "A similar project?")} <i class="bi bi-arrow-right"></i></a>`}
         </div>
       </article>`,
       )
@@ -560,12 +562,13 @@ function renderResources() {
   const grid = document.getElementById("resources");
   if (!grid) return;
   const filters = document.getElementById("res-filters");
-  const types = ["Tout", ...new Set(RESOURCES.map((r) => r.type))];
-  let current = "Tout";
+  const ALL = tr("Tout", "All");
+  const types = [ALL, ...new Set(RESOURCES.map((r) => r.type))];
+  let current = ALL;
   filters.innerHTML = types.map((t) => `<button type="button" class="tab-ed" data-type="${t}">${t}</button>`).join("");
   const draw = () => {
     filters.querySelectorAll("[data-type]").forEach((b) => b.classList.toggle("active", b.dataset.type === current));
-    grid.innerHTML = RESOURCES.filter((r) => current === "Tout" || r.type === current)
+    grid.innerHTML = RESOURCES.filter((r) => current === ALL || r.type === current)
       .map(
         (r) => `
       <div class="col-md-6 col-lg-4">
@@ -573,7 +576,7 @@ function renderResources() {
           <span class="res-top"><span class="res-icon"><i class="bi ${r.icon}"></i></span><span class="tag-ed">${r.type}</span></span>
           <strong class="font-display fs-5 text-cream d-block mt-4">${escA(r.title)}</strong>
           <span class="small text-soft d-block mt-2">${escA(r.desc)}</span>
-          <span class="link-gold mt-auto pt-3">${r.soon ? "Bientôt disponible" : 'Lire <i class="bi bi-arrow-right"></i>'}</span>
+          <span class="link-gold mt-auto pt-3">${r.soon ? tr("Bientôt disponible", "Coming soon") : `${tr("Lire", "Read")} <i class="bi bi-arrow-right"></i>`}</span>
         </button>
       </div>`,
       )
@@ -595,12 +598,12 @@ function renderResources() {
     modalEl.querySelector(".modal-content").innerHTML = `
       <div class="modal-header border-0 pb-0">
         <div><span class="badge rounded-pill text-bg-primary">${r.type}</span><h2 class="modal-title h3 mt-2 font-display">${escA(r.title)}</h2></div>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="${tr("Fermer", "Close")}"></button>
       </div>
       <div class="modal-body res-body">${r.body}</div>
       <div class="modal-footer border-0">
-        <button type="button" class="btn btn-soft" onclick="window.print()"><i class="bi bi-printer me-1"></i>Imprimer</button>
-        ${r.cta ? `<a class="btn btn-primary" href="${r.cta[0]}">${r.cta[1]} <i class="bi bi-arrow-right ms-1"></i></a>` : ""}
+        <button type="button" class="btn btn-soft" onclick="window.print()"><i class="bi bi-printer me-1"></i>${tr("Imprimer", "Print")}</button>
+        ${r.cta ? `<a class="btn btn-primary" href="${page(r.cta[0])}">${r.cta[1]} <i class="bi bi-arrow-right ms-1"></i></a>` : ""}
       </div>`;
     modal.show();
   });
@@ -614,32 +617,33 @@ function renderBlog() {
   const slug = new URLSearchParams(location.search).get("article");
   const post = POSTS.find((p) => p.slug === slug);
   const card = (p) => `
-    <a class="post reveal" href="blog.html?article=${p.slug}">
+    <a class="post reveal" href="${page("blog.html")}?article=${p.slug}">
       <span class="post-ph"><img src="assets/img/${p.photo}" alt="" loading="lazy"></span>
-      <span class="d-flex gap-2 align-items-center small mt-3"><span class="tag-ed">${escA(p.cat)}</span><span class="text-soft">${p.read} min de lecture</span></span>
+      <span class="d-flex gap-2 align-items-center small mt-3"><span class="tag-ed">${escA(p.cat)}</span><span class="text-soft">${p.read} ${tr("min de lecture", "min read")}</span></span>
       <strong class="font-display fs-5 text-cream d-block mt-2">${escA(p.title)}</strong>
       <span class="small text-soft d-block mt-2">${escA(p.excerpt)}</span>
     </a>`;
 
   if (!post) {
-    const cats = ["Tous", ...new Set(POSTS.map((p) => p.cat))];
-    let current = "Tous";
+    const ALLC = tr("Tous", "All");
+    const cats = [ALLC, ...new Set(POSTS.map((p) => p.cat))];
+    let current = ALLC;
     const [first, ...rest] = POSTS;
     root.innerHTML = `
-      <a class="post-feature reveal" href="blog.html?article=${first.slug}">
+      <a class="post-feature reveal" href="${page("blog.html")}?article=${first.slug}">
         <span class="post-ph"><img src="assets/img/${first.photo}" alt=""></span>
         <span class="p-4 p-lg-5 d-flex flex-column justify-content-center">
-          <span class="kicker mb-3">À la une</span>
+          <span class="kicker mb-3">${tr("À la une", "Featured")}</span>
           <strong class="display-ed text-cream" style="font-size:clamp(1.7rem,3vw,2.6rem)">${escA(first.title)}</strong>
           <span class="text-soft mt-3">${escA(first.excerpt)}</span>
-          <span class="link-gold mt-4">Lire l'article <i class="bi bi-arrow-right"></i></span>
+          <span class="link-gold mt-4">${tr("Lire l'article", "Read the article")} <i class="bi bi-arrow-right"></i></span>
         </span>
       </a>
       <div class="d-flex flex-wrap gap-2 tabs-ed my-5" id="blog-cats">${cats.map((c) => `<button type="button" class="tab-ed" data-cat="${c}">${c}</button>`).join("")}</div>
       <div class="row g-4" id="blog-list"></div>`;
     const draw = () => {
       root.querySelectorAll("[data-cat]").forEach((b) => b.classList.toggle("active", b.dataset.cat === current));
-      root.querySelector("#blog-list").innerHTML = (current === "Tous" ? rest : POSTS.filter((p) => p.cat === current))
+      root.querySelector("#blog-list").innerHTML = (current === ALLC ? rest : POSTS.filter((p) => p.cat === current))
         .map((p) => `<div class="col-md-6 col-lg-4">${card(p)}</div>`)
         .join("");
       observeReveals();
@@ -661,21 +665,21 @@ function renderBlog() {
   const others = POSTS.filter((p) => p !== post).slice(0, 3);
   root.innerHTML = `
     <article class="article mx-auto">
-      <a href="blog.html" class="link-gold small"><i class="bi bi-arrow-left"></i> Tous les articles</a>
-      <p class="d-flex gap-2 align-items-center small mt-4 mb-3"><span class="tag-ed">${escA(post.cat)}</span><span class="text-soft">${post.read} min de lecture · L'équipe Jongoma</span></p>
+      <a href="${page("blog.html")}" class="link-gold small"><i class="bi bi-arrow-left"></i> ${tr("Tous les articles", "All articles")}</a>
+      <p class="d-flex gap-2 align-items-center small mt-4 mb-3"><span class="tag-ed">${escA(post.cat)}</span><span class="text-soft">${post.read} ${tr("min de lecture · L'équipe Jongoma", "min read · The Jongoma team")}</span></p>
       <h1 class="display-ed text-cream" style="font-size:clamp(2rem,4.5vw,3.4rem)">${escA(post.title)}</h1>
       <p class="fs-5 text-soft mt-3">${escA(post.excerpt)}</p>
       <div class="arch-wide my-5"><img src="assets/img/${post.photo}" alt=""></div>
       ${post.body.map((b) => (Array.isArray(b) ? `<h2 class="font-display h4 text-cream mt-5 mb-3">${escA(b[1])}</h2>` : `<p>${escA(b)}</p>`)).join("")}
       <div class="share mt-5 pt-4 d-flex flex-wrap align-items-center gap-2">
-        <span class="small text-soft me-2">Partager</span>
-        <a class="share-btn" target="_blank" rel="noopener" href="https://wa.me/?text=${encodeURIComponent(`${post.title} ${location.href}`)}" aria-label="Partager sur WhatsApp"><i class="bi bi-whatsapp"></i></a>
-        <a class="share-btn" target="_blank" rel="noopener" href="https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(location.href)}" aria-label="Partager sur LinkedIn"><i class="bi bi-linkedin"></i></a>
-        <button class="share-btn" type="button" data-copy aria-label="Copier le lien"><i class="bi bi-link-45deg"></i></button>
+        <span class="small text-soft me-2">${tr("Partager", "Share")}</span>
+        <a class="share-btn" target="_blank" rel="noopener" href="https://wa.me/?text=${encodeURIComponent(`${post.title} ${location.href}`)}" aria-label="${tr("Partager sur", "Share on")} WhatsApp"><i class="bi bi-whatsapp"></i></a>
+        <a class="share-btn" target="_blank" rel="noopener" href="https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(location.href)}" aria-label="${tr("Partager sur", "Share on")} LinkedIn"><i class="bi bi-linkedin"></i></a>
+        <button class="share-btn" type="button" data-copy aria-label="${tr("Copier le lien", "Copy link")}"><i class="bi bi-link-45deg"></i></button>
       </div>
     </article>
     <div class="mt-5 pt-5">
-      <p class="kicker mb-4">À lire aussi</p>
+      <p class="kicker mb-4">${tr("À lire aussi", "Read next")}</p>
       <div class="row g-4">${others.map((p) => `<div class="col-md-4">${card(p)}</div>`).join("")}</div>
     </div>`;
   root.querySelector("[data-copy]").addEventListener("click", (e) => {
@@ -703,13 +707,13 @@ function wireProjectForm() {
     const d = new FormData(form);
     const poles = d.getAll("poles").map((id) => poleById(id).title);
     const lines = [
-      `[Projet] ${d.get("description") || ""}`.trim(),
-      poles.length ? `Type : ${poles.join(", ")}` : "",
-      d.get("domain") ? `Domaine : ${d.get("domain")}` : "",
-      d.get("when") ? `Délai : ${d.get("when")}` : "",
+      `[${tr("Projet", "Project")}] ${d.get("description") || ""}`.trim(),
+      poles.length ? `${tr("Type", "Type")}${tr(" :", ":")} ${poles.join(", ")}` : "",
+      d.get("domain") ? `${tr("Domaine", "Sector")}${tr(" :", ":")} ${d.get("domain")}` : "",
+      d.get("when") ? `${tr("Délai", "Timing")}${tr(" :", ":")} ${d.get("when")}` : "",
       d.get("budget") ? `Budget : ${d.get("budget")}` : "",
-      d.get("org") ? `Organisation : ${d.get("org")}` : "",
-      d.get("name") ? `Contact : ${d.get("name")}${d.get("email") ? ` · ${d.get("email")}` : ""}` : "",
+      d.get("org") ? `${tr("Organisation", "Organisation")}${tr(" :", ":")} ${d.get("org")}` : "",
+      d.get("name") ? `Contact${tr(" :", ":")} ${d.get("name")}${d.get("email") ? ` · ${d.get("email")}` : ""}` : "",
     ].filter(Boolean);
     return { poles, lines };
   };
@@ -717,7 +721,7 @@ function wireProjectForm() {
     const { poles, lines } = compose();
     summary.innerHTML = lines.length > 1 || poles.length
       ? `<ul class="list-unstyled d-grid gap-2 mb-0">${lines.map((l) => `<li><i class="bi bi-check2 text-gold-light me-2"></i>${escA(l)}</li>`).join("")}</ul>`
-      : '<p class="text-soft mb-0">Votre résumé s\'affichera ici au fur et à mesure.</p>';
+      : `<p class="text-soft mb-0">${tr("Votre résumé s'affichera ici au fur et à mesure.", "Your summary will appear here as you go.")}</p>`;
   };
   form.addEventListener("input", refresh);
   form.addEventListener("change", refresh);
@@ -731,7 +735,7 @@ function wireProjectForm() {
 }
 
 /** Formulaire « Devenez notre partenaire » : la proposition s'ouvre sur la plateforme, déjà rédigée. */
-const PARTNER_TYPES = [
+const PARTNER_TYPES = window.JG_EN?.PARTNER_TYPES || [
   ["bi-bank", "Bailleur / fondation"],
   ["bi-building", "Entreprise / RSE"],
   ["bi-globe2", "ONG / institution"],
@@ -751,20 +755,20 @@ function wirePartnerForm() {
     form.classList.add("was-validated");
     if (!form.checkValidity()) {
       error.hidden = false;
-      error.textContent = "Merci de remplir les champs marqués d'un astérisque et d'accepter la mention.";
+      error.textContent = tr("Merci de remplir les champs marqués d'un astérisque et d'accepter la mention.", "Please fill in the fields marked with an asterisk and accept the notice.");
       return;
     }
     error.hidden = true;
     const d = new FormData(form);
-    const line = (label, key) => (d.get(key) ? `${label} : ${String(d.get(key)).trim()}` : "");
+    const line = (label, key) => (d.get(key) ? `${label}${tr(" :", ":")} ${String(d.get(key)).trim()}` : "");
     const besoin = [
-      `[Partenariat] ${d.get("type")}`,
+      `[${tr("Partenariat", "Partnership")}] ${d.get("type")}`,
       String(d.get("message")).trim(),
       line("Organisation", "org"),
-      `Contact : ${d.get("name")}${d.get("role") ? `, ${d.get("role")}` : ""}`,
-      line("Pays", "country"),
+      `Contact${tr(" :", ":")} ${d.get("name")}${d.get("role") ? `, ${d.get("role")}` : ""}`,
+      line(tr("Pays", "Country"), "country"),
       line("E-mail", "email"),
-      line("Téléphone", "phone"),
+      line(tr("Téléphone", "Phone"), "phone"),
     ].filter(Boolean).join("\n");
     window.location.href = platform(`/demande?${new URLSearchParams({ besoin })}`);
   });

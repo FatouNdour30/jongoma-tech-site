@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Start a project — Jongoma Tech</title>
+  <meta name="description" content="Describe your digital project in a few minutes: a Jongoma manager replies within 48 hours.">
+  <meta name="theme-color" content="#160416">
+  <link rel="icon" href="assets/img/logo-mark.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="assets/css/editorial.css" rel="stylesheet">
+  <link rel="alternate" hreflang="fr" href="projet.html">
+  <link rel="alternate" hreflang="en" href="projet-en.html">
+</head>
+<body class="ed" data-page="project">
+  <div id="site-header"></div>
+
+  <main>
+    <section class="page-hero pb-4">
+      <span class="wax"></span>
+      <div class="container position-relative">
+        <p class="crumbs reveal"><a href="index-en.html">Home</a> / Start a project</p>
+        <p class="kicker mt-3 reveal">Start a project</p>
+        <h1 class="display-ed text-cream mt-3 reveal" style="max-width:52rem">Tell us about <span class="gold-gradient">your idea</span></h1>
+        <p class="fs-5 text-soft mt-3 reveal" style="max-width:40rem">A few minutes is all it takes. A Jongoma manager reviews your project and replies within 48 hours.</p>
+      </div>
+    </section>
+
+    <section class="section pt-4">
+      <div class="container">
+        <div class="row g-5">
+          <div class="col-lg-7">
+            <form id="project-form" class="form-dark d-grid gap-5" novalidate>
+              <fieldset>
+                <legend class="step-label"><b>1</b> What do you need?</legend>
+                <div class="picks" id="pf-poles"></div>
+                <p class="small text-soft mt-2 mb-0">Several choices possible. Not sure? Go straight to step 3.</p>
+              </fieldset>
+
+              <fieldset>
+                <legend class="step-label"><b>2</b> Your sector</legend>
+                <label for="pf-domain" class="visually-hidden">Sector</label>
+                <select id="pf-domain" name="domain" class="form-select"><option value="">Choose a sector (optional)</option></select>
+              </fieldset>
+
+              <fieldset>
+                <legend class="step-label"><b>3</b> Describe your project</legend>
+                <label for="pf-desc" class="visually-hidden">Project description</label>
+                <textarea id="pf-desc" name="description" rows="6" class="form-control" required placeholder="The problem to solve, for whom, what you have in mind… In your own words."></textarea>
+                <p class="small text-soft mt-2 mb-0">Need help? <a class="link-gold" href="ressources-en.html">The project brief in 10 questions</a></p>
+              </fieldset>
+
+              <fieldset>
+                <legend class="step-label"><b>4</b> Timing and budget</legend>
+                <div class="row g-3">
+                  <div class="col-sm-6">
+                    <label for="pf-when" class="form-label small">When would you like to start?</label>
+                    <select id="pf-when" name="when" class="form-select">
+                      <option value="">I don't know yet</option>
+                      <option>As soon as possible</option>
+                      <option>In 1 to 3 months</option>
+                      <option>In more than 3 months</option>
+                    </select>
+                  </div>
+                  <div class="col-sm-6">
+                    <label for="pf-budget" class="form-label small">Planned budget</label>
+                    <select id="pf-budget" name="budget" class="form-select">
+                      <option value="">To be defined together</option>
+                      <option>Less than 500,000 FCFA</option>
+                      <option>500,000 to 2,000,000 FCFA</option>
+                      <option>2,000,000 to 10,000,000 FCFA</option>
+                      <option>More than 10,000,000 FCFA</option>
+                    </select>
+                  </div>
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <legend class="step-label"><b>5</b> Your details</legend>
+                <div class="row g-3">
+                  <div class="col-sm-6"><label for="pf-name" class="form-label small">Full name</label><input id="pf-name" name="name" class="form-control" autocomplete="name" required></div>
+                  <div class="col-sm-6"><label for="pf-org" class="form-label small">Organisation (optional)</label><input id="pf-org" name="org" class="form-control" autocomplete="organization"></div>
+                  <div class="col-12"><label for="pf-email" class="form-label small">Email (optional)</label><input id="pf-email" name="email" type="email" class="form-control" autocomplete="email"></div>
+                </div>
+                <p class="small text-soft mt-2 mb-0">You will be asked for your phone number on the platform, so you can follow your request securely.</p>
+              </fieldset>
+
+              <div>
+                <button type="submit" class="btn btn-gold btn-lg px-5">Send my project <i class="bi bi-arrow-right ms-1"></i></button>
+                <p class="small text-soft mt-3 mb-0"><i class="bi bi-shield-check text-gold-light me-1"></i>Your data is protected under Senegalese law (CDP) and the GDPR.</p>
+              </div>
+            </form>
+          </div>
+
+          <div class="col-lg-5">
+            <div class="sticky-lg d-grid gap-4">
+              <div class="panel-ed">
+                <p class="kicker mb-3">Your project at a glance</p>
+                <div id="pf-summary" aria-live="polite"></div>
+              </div>
+              <div class="panel-ed">
+                <p class="kicker mb-3">What happens next?</p>
+                <ol class="list-unstyled d-grid gap-3 mb-0">
+                  <li class="d-flex gap-3"><span class="mnum" style="font-size:1.8rem;color:var(--jg-gold-light);-webkit-text-stroke:0">1</span><span class="text-soft">Your project opens on the Jongoma platform: you confirm with your phone.</span></li>
+                  <li class="d-flex gap-3"><span class="mnum" style="font-size:1.8rem;color:var(--jg-gold-light);-webkit-text-stroke:0">2</span><span class="text-soft">A manager replies within 48 hours and suggests a first conversation.</span></li>
+                  <li class="d-flex gap-3"><span class="mnum" style="font-size:1.8rem;color:var(--jg-gold-light);-webkit-text-stroke:0">3</span><span class="text-soft">You receive a proposal and a detailed quote, to follow in your client area.</span></li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/agency-en.js"></script>
+  <script src="assets/js/agency.js"></script>
+</body>
+</html>

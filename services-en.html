@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Services — Jongoma Tech</title>
+  <meta name="description" content="Software engineering, UX/UI design, digital marketing, graphic design and video, cloud, data and AI, cybersecurity, managed IT, and the Jongoma Impact programmes for women and families.">
+  <meta name="theme-color" content="#160416">
+  <link rel="icon" href="assets/img/logo-mark.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="assets/css/editorial.css" rel="stylesheet">
+  <link rel="alternate" hreflang="fr" href="services.html">
+  <link rel="alternate" hreflang="en" href="services-en.html">
+</head>
+<body class="ed" data-page="services">
+  <div id="site-header"></div>
+
+  <main>
+    <section class="page-hero">
+      <span class="wax"></span>
+      <div class="container position-relative">
+        <p class="crumbs reveal"><a href="index-en.html">Home</a> / Services</p>
+        <div class="row align-items-end g-4">
+          <div class="col-lg-8">
+            <p class="kicker mt-3 reveal">Services</p>
+            <h1 class="display-ed text-cream mt-3 reveal">What we <span class="gold-gradient">offer</span></h1>
+          </div>
+          <div class="col-lg-4 reveal">
+            <p class="text-soft mb-3">Areas of expertise for your digital projects, and impact programmes for women and families.</p>
+            <div class="d-flex flex-wrap gap-2">
+              <a class="btn btn-sm btn-ghost" href="#poles">Areas of expertise</a>
+              <a class="btn btn-sm btn-ghost" href="#realisations">Our work</a>
+              <a class="btn btn-sm btn-ghost" href="#catalogue">Catalogue · <span data-count="total">26</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section pt-0" id="poles" style="scroll-margin-top:5rem">
+      <div class="container">
+        <div class="poles" data-poles></div>
+      </div>
+    </section>
+
+    <section class="section pt-0" id="realisations" style="scroll-margin-top:5rem">
+      <div class="container">
+        <div class="row align-items-end g-4 mb-5 reveal">
+          <div class="col-lg-7">
+            <p class="kicker">Portfolio</p>
+            <h2 class="display-ed text-cream mt-3 mb-0 h2-ed">Our <span class="gold-gradient">work</span></h2>
+          </div>
+          <div class="col-lg-5">
+            <p class="text-soft mb-3">Websites, platforms and online shops designed and built by Jongoma Tech, live today.</p>
+            <a class="link-gold" href="portfolio-en.html">Full portfolio <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
+        <div class="rcs" data-realisations></div>
+      </div>
+    </section>
+
+    <section class="section pt-0" id="methodologie">
+      <div class="container">
+        <div class="row g-5">
+          <div class="col-lg-5">
+            <div class="sticky-lg reveal">
+              <p class="kicker">Our methodology</p>
+              <h2 class="display-ed text-cream mt-3 h2-ed">Listen. Design. <span class="gold-gradient">Prove.</span></h2>
+              <p class="text-soft mt-3">Six steps, the same for every project. You always know where it stands, and who is handling it.</p>
+            </div>
+          </div>
+          <div class="col-lg-7"><div class="method" data-method></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section pt-0">
+      <div class="container">
+        <div class="row align-items-end g-4 mb-5 reveal">
+          <div class="col-lg-7"><p class="kicker">Sectors</p><h2 class="display-ed text-cream mt-3 mb-0 h2-ed">Our sectors <span class="outline-word">of activity</span></h2></div>
+          <div class="col-lg-5"><p class="text-soft mb-0">From artificial intelligence to agriculture, we adapt our tools to your sector and your users.</p></div>
+        </div>
+        <div class="domains" data-domains></div>
+      </div>
+    </section>
+
+    <section class="section band-cream" id="catalogue" style="scroll-margin-top:4rem">
+      <div class="container">
+        <div class="mb-4 reveal" style="max-width:46rem">
+          <p class="kicker">The catalogue</p>
+          <h2 class="display-ed text-cream mt-3 h2-ed"><span data-count="total">26</span> answers to very real problems</h2>
+          <p class="text-soft"><span data-count="pro">12</span> Jongoma Pro services for organisations, <span data-count="impact">14</span> Jongoma Impact programmes for women and families.</p>
+        </div>
+        <div class="panel-ed p-3 p-md-4 mb-4 form-dark">
+          <div class="d-flex flex-column flex-md-row gap-3 align-items-md-center">
+            <div class="d-flex flex-wrap gap-2" role="group" aria-label="Pôle">
+              <button type="button" class="btn btn-sm chip active" data-branch="all">All</button>
+              <button type="button" class="btn btn-sm chip" data-branch="impact">Jongoma Impact</button>
+              <button type="button" class="btn btn-sm chip" data-branch="pro">Jongoma Pro</button>
+            </div>
+            <div class="position-relative ms-md-auto" style="min-width:min(100%,20rem)">
+              <i class="bi bi-search position-absolute text-soft" style="left:1rem;top:50%;transform:translateY(-50%)"></i>
+              <label for="catalog-search" class="visually-hidden">Search for a service</label>
+              <input id="catalog-search" class="form-control rounded-pill ps-5" placeholder="Search for a service…">
+            </div>
+          </div>
+          <div id="themes" class="d-flex flex-wrap gap-2 mt-3"></div>
+        </div>
+        <p class="text-soft small" id="catalog-count" aria-live="polite"></p>
+        <div class="row g-4" id="catalog"></div>
+      </div>
+    </section>
+
+    <section class="section position-relative overflow-hidden" style="background:linear-gradient(135deg,#3e0630,#c8046a)">
+      <span class="wax" style="opacity:.12"></span>
+      <div class="container position-relative d-flex flex-column flex-lg-row align-items-lg-center justify-content-between gap-4 reveal">
+        <div>
+          <h2 class="display-ed text-white" style="font-size:clamp(2rem,4vw,3.2rem)">Your need isn't on the list?</h2>
+          <p class="fs-5 text-white-50 mb-0">Describe it: a manager will point you to the right solution within 48 hours.</p>
+        </div>
+        <a class="btn btn-gold btn-lg flex-shrink-0" href="projet-en.html"><i class="bi bi-lightning-charge-fill me-1"></i> Start a project</a>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <div class="modal fade" id="serviceModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable"><div class="modal-content rounded-xl"></div></div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/data-en.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/agency-en.js"></script>
+  <script src="assets/js/agency.js"></script>
+</body>
+</html>

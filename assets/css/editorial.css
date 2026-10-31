@@ -766,3 +766,8 @@
   .rc .btn { white-space: normal; text-align: left; }
   .diff-foot .btn { width: 100%; justify-content: center; }
 }
+/* Sélecteur de langue FR | EN */
+.lang-toggle { display: inline-flex; padding: .2rem; border-radius: 999px; border: 1px solid rgba(246,236,220,.25); }
+.lang-toggle a, .lang-toggle span { padding: .25rem .65rem; border-radius: 999px; font-size: .75rem; font-weight: 700; letter-spacing: .06em; text-decoration: none; color: rgba(246,236,220,.75); }
+.lang-toggle a:hover { color: #fff; }
+.lang-toggle .on { background: var(--jg-gold-light); color: var(--jg-plum); }

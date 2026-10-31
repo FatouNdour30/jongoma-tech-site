@@ -35,20 +35,20 @@
 
   /* --- Quiz : 2 questions, puis les services adaptés --- */
   const PROFILES = [
-    { id: "women", icon: "bi-people", label: "Une femme, une famille ou une communauté", branch: "impact" },
-    { id: "diaspora", icon: "bi-globe-europe-africa", label: "Je vis à l'étranger (diaspora)", branch: "any", prefer: ["diaspora"] },
-    { id: "orgs", icon: "bi-buildings", label: "Une entreprise, une ONG, un bailleur ou une institution", branch: "pro" },
-    { id: "tech", icon: "bi-laptop", label: "Une femme dans le numérique (ou qui veut s'y lancer)", branch: "any", theme: "digital" },
+    { id: "women", icon: "bi-people", label: tr("Une femme, une famille ou une communauté", "A woman, a family or a community"), branch: "impact" },
+    { id: "diaspora", icon: "bi-globe-europe-africa", label: tr("Je vis à l'étranger (diaspora)", "I live abroad (diaspora)"), branch: "any", prefer: ["diaspora"] },
+    { id: "orgs", icon: "bi-buildings", label: tr("Une entreprise, une ONG, un bailleur ou une institution", "A company, an NGO, a donor or an institution"), branch: "pro" },
+    { id: "tech", icon: "bi-laptop", label: tr("Une femme dans le numérique (ou qui veut s'y lancer)", "A woman in tech (or who wants to start)"), branch: "any", theme: "digital" },
   ];
   const TOPICS = [
-    { id: "health", icon: "bi-heart-pulse", label: "Santé, grossesse" },
-    { id: "protection", icon: "bi-shield-check", label: "Protection, papiers, terres" },
-    { id: "education", icon: "bi-mortarboard", label: "École, formation" },
-    { id: "work", icon: "bi-briefcase", label: "Emploi, revenus" },
-    { id: "finance", icon: "bi-wallet2", label: "Argent, épargne, paiements" },
+    { id: "health", icon: "bi-heart-pulse", label: tr("Santé, grossesse", "Health, pregnancy") },
+    { id: "protection", icon: "bi-shield-check", label: tr("Protection, papiers, terres", "Protection, papers, land") },
+    { id: "education", icon: "bi-mortarboard", label: tr("École, formation", "School, training") },
+    { id: "work", icon: "bi-briefcase", label: tr("Emploi, revenus", "Jobs, income") },
+    { id: "finance", icon: "bi-wallet2", label: tr("Argent, épargne, paiements", "Money, savings, payments") },
     { id: "agriculture", icon: "bi-flower1", label: "Agriculture" },
-    { id: "transparency", icon: "bi-search", label: "Suivi, preuves, évaluation" },
-    { id: "digital", icon: "bi-phone", label: "Numérique" },
+    { id: "transparency", icon: "bi-search", label: tr("Suivi, preuves, évaluation", "Monitoring, evidence, evaluation") },
+    { id: "digital", icon: "bi-phone", label: tr("Numérique", "Digital") },
   ];
 
   function quiz() {
@@ -58,14 +58,14 @@
     const progress = (n) => `<div class="quiz-progress mb-4" aria-hidden="true"><span style="width:${n}%"></span></div>`;
     const question = (step, title, options) => `
       ${progress(step === 1 ? 33 : 66)}
-      <p class="small text-soft mb-1">Question ${step} sur 2</p>
+      <p class="small text-soft mb-1">Question ${step} ${tr("sur", "of")} 2</p>
       <h3 class="font-display h4 mb-4 text-cream">${title}</h3>
       <div class="d-grid gap-2" role="list">
         ${options.map((o) => `<button type="button" class="quiz-option" data-answer="${o.id}" role="listitem"><span class="emo" aria-hidden="true"><i class="bi ${o.icon}"></i></span><span class="flex-grow-1">${esc(o.label)}</span><i class="bi bi-arrow-right quiz-go" aria-hidden="true"></i></button>`).join("")}
       </div>`;
 
     const step1 = () => {
-      box.innerHTML = question(1, "Vous êtes…", PROFILES);
+      box.innerHTML = question(1, tr("Vous êtes…", "You are…"), PROFILES);
       box.onclick = (e) => {
         const b = e.target.closest("[data-answer]");
         if (!b) return;
@@ -74,8 +74,8 @@
       };
     };
     const step2 = () => {
-      box.innerHTML = question(2, "Quel sujet vous préoccupe ?", TOPICS) +
-        '<button type="button" class="btn btn-link text-soft mt-3 px-0" data-back>← Revenir</button>';
+      box.innerHTML = question(2, tr("Quel sujet vous préoccupe ?", "What topic concerns you?"), TOPICS) +
+        `<button type="button" class="btn btn-link text-soft mt-3 px-0" data-back>← ${tr("Revenir", "Back")}</button>`;
       box.onclick = (e) => {
         if (e.target.closest("[data-back]")) return step1();
         const b = e.target.closest("[data-answer]");
@@ -101,23 +101,23 @@
         .map((x) => x.s);
       box.innerHTML = `
         ${progress(100)}
-        <p class="kicker mb-2">Nos suggestions</p>
-        <h3 class="font-display h4 text-cream mb-4">${best.length ? "Voici ce que Jongoma peut faire pour vous" : "Parlons-en directement"}</h3>
+        <p class="kicker mb-2">${tr("Nos suggestions", "Our suggestions")}</p>
+        <h3 class="font-display h4 text-cream mb-4">${best.length ? tr("Voici ce que Jongoma peut faire pour vous", "Here is what Jongoma can do for you") : tr("Parlons-en directement", "Let's talk directly")}</h3>
         <div class="d-grid gap-2">
           ${best.map((s) => `
             <div class="result-card">
               ${s.photo ? `<img src="assets/img/${s.photo}" alt="">` : '<span class="d-grid place-items-center rounded-4" style="width:4.5rem;height:4.5rem;background:var(--jg-magenta)"></span>'}
               <div class="flex-grow-1">
-                <p class="fw-bold text-cream mb-0">${esc(s.name)}${s.status === "soon" ? ' <span class="badge text-bg-light ms-1">Bientôt</span>' : ""}</p>
+                <p class="fw-bold text-cream mb-0">${esc(s.name)}${s.status === "soon" ? ` <span class="badge text-bg-light ms-1">${tr("Bientôt", "Soon")}</span>` : ""}</p>
                 <p class="small text-soft mb-0">${esc(s.problem)}</p>
               </div>
-              <a class="btn btn-sm btn-gold flex-shrink-0" href="${toPlatform(`/demande?service=${s.id}`)}">Demander</a>
+              <a class="btn btn-sm btn-gold flex-shrink-0" href="${toPlatform(`/demande?service=${s.id}`)}">${tr("Demander", "Request")}</a>
             </div>`).join("")}
-          ${best.length ? "" : '<p class="text-soft">Décrivez votre situation : une responsable vous oriente vers la bonne solution sous 48 heures.</p>'}
+          ${best.length ? "" : `<p class="text-soft">${tr("Décrivez votre situation : une responsable vous oriente vers la bonne solution sous 48 heures.", "Describe your situation: a manager will point you to the right solution within 48 hours.")}</p>`}
         </div>
         <div class="d-flex flex-wrap gap-2 mt-4">
-          <a class="btn btn-primary" href="${toPlatform("/demande")}">Décrire mon besoin</a>
-          <button type="button" class="btn btn-ghost" data-restart>Recommencer</button>
+          <a class="btn btn-primary" href="${toPlatform("/demande")}">${tr("Décrire mon besoin", "Describe my need")}</a>
+          <button type="button" class="btn btn-ghost" data-restart>${tr("Recommencer", "Start again")}</button>
         </div>`;
       box.onclick = (e) => e.target.closest("[data-restart]") && step1();
     };
@@ -157,13 +157,13 @@
           (s) => `
         <article class="svc-ed">
           <div class="ph">${s.photo ? `<img src="assets/img/${s.photo}" alt="${esc(s.alt)}" loading="lazy">` : ""}
-            ${s.status === "flagship" ? '<span class="badge-status flagship"><i class="bi bi-star-fill me-1"></i>Service phare</span>' : s.status === "soon" ? '<span class="badge-status soon">Bientôt</span>' : ""}</div>
+            ${s.status === "flagship" ? `<span class="badge-status flagship"><i class="bi bi-star-fill me-1"></i>${tr("Service phare", "Flagship")}</span>` : s.status === "soon" ? `<span class="badge-status soon">${tr("Bientôt", "Soon")}</span>` : ""}</div>
           <div class="p-4 d-flex flex-column flex-grow-1">
             <h3 class="font-display h5 mb-2">${esc(s.name)}</h3>
             <p class="small text-muted flex-grow-1 mb-3">${esc(s.problem)}</p>
             <div class="d-flex gap-2">
-              <button type="button" class="btn btn-sm btn-plum" data-service="${s.id}">Détails</button>
-              <a class="btn btn-sm btn-soft" href="${toPlatform(`/demande?service=${s.id}`)}">Demander</a>
+              <button type="button" class="btn btn-sm btn-plum" data-service="${s.id}">${tr("Détails", "Details")}</button>
+              <a class="btn btn-sm btn-soft" href="${toPlatform(`/demande?service=${s.id}`)}">${tr("Demander", "Request")}</a>
             </div>
           </div>
         </article>`,
