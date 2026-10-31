@@ -50,3 +50,12 @@ Tous les boutons « Espace client », « Faire une demande », « Créer mon com
 - Les exemples de la page « La plateforme » (noms, dossiers, publication) sont signalés comme fictifs.
 - Portfolio : seules les cartes « Réalisation Jongoma » sont de vrais projets. Les « Projets types » ne sont pas des références clients ; remplacez-les par de vraies études de cas, avec l'accord des clients.
 - Les photos viennent d'Unsplash (crédits sur la plateforme, page Crédits photos).
+
+## Version anglaise
+
+Chaque page a sa version anglaise : `index-en.html`, `services-en.html`, etc. Le bouton **FR | EN** du menu passe d'une langue à l'autre sur la même page.
+
+- Textes des menus, boutons, cartes : `assets/js/main.js`, `editorial.js` et `agency.js` (fonction `tr("français", "english")`).
+- Pôles, domaines, réalisations, ressources et articles en anglais : `assets/js/agency-en.js`.
+- Catalogue des services en anglais : `assets/js/data-en.js`, généré depuis les textes `en` de `src/content/`.
+- Quand vous modifiez une page française, il faut aussi modifier sa page `-en.html` (ou demander à Claude de la régénérer).
