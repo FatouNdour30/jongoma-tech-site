@@ -7,6 +7,8 @@
 const JONGOMA_CONFIG = {
   platformUrl: "http://localhost:3000",
   lang: "fr",
+  // false tant que la plateforme n'est pas en ligne : les liens « Espace client », « Créer mon compte »… sont masqués.
+  platformOnline: false,
 };
 
 const platform = (path) => `${JONGOMA_CONFIG.platformUrl}/${JONGOMA_CONFIG.lang}${path}`;
@@ -97,8 +99,8 @@ function renderFooter() {
           <div class="rounded-xl p-4 text-white" style="background:linear-gradient(135deg,var(--jg-plum-2),var(--jg-plum))">
             <p class="font-display fs-5 mb-2">Quel problème voulez-vous résoudre ?</p>
             <p class="small text-white-50">Une responsable Jongoma vous répond en 48 heures.</p>
-            <a class="btn btn-primary btn-sm mb-2" href="${platform("/demande")}">Décrire mon besoin</a>
-            <a class="btn btn-light-outline btn-sm mb-2" href="${platform("/connexion")}">Espace client</a>
+            <a class="btn btn-primary btn-sm mb-2" href="projet.html">Décrire mon besoin</a>
+            <a class="btn btn-light-outline btn-sm mb-2" data-platform="/connexion" href="#">Espace client</a>
           </div>
         </div>
       </div>
@@ -117,6 +119,8 @@ function renderFooter() {
 /* ---------- Liens vers la plateforme ---------- */
 function wirePlatformLinks() {
   document.querySelectorAll("[data-platform]").forEach((a) => (a.href = platform(a.dataset.platform)));
+  // Plateforme pas encore en ligne : on retire les accès au compte (et les blocs qui ne servent qu'à ça).
+  if (!JONGOMA_CONFIG.platformOnline) document.querySelectorAll("[data-platform], [data-platform-only]").forEach((n) => n.remove());
   // Formulaires « Quel problème voulez-vous résoudre ? » : la demande se termine sur la plateforme.
   document.querySelectorAll("form[data-ask]").forEach((form) =>
     form.addEventListener("submit", (e) => {
