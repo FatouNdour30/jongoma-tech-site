@@ -96,6 +96,7 @@ function renderFooter() {
     ...NAV,
     { href: "projet.html", label: tr("J'ai un projet", "Start a project") },
     { href: "index.html#partenaire", label: tr("Devenir partenaire", "Become a partner") },
+    { href: "mentions-legales.html", label: tr("Mentions légales", "Legal notice") },
   ];
   el.innerHTML = `
   <footer class="footer-jg mt-5">
@@ -124,7 +125,7 @@ function renderFooter() {
         <div class="col-md-6 col-lg-4">
           <div class="rounded-xl p-4 text-white" style="background:linear-gradient(135deg,var(--jg-plum-2),var(--jg-plum))">
             <p class="font-display fs-5 mb-2">${tr("Quel problème voulez-vous résoudre ?", "What problem do you want to solve?")}</p>
-            <p class="small text-white-50">${tr("Nous visons une première réponse sous 48 heures ouvrées.", "We aim to reply within 48 working hours.")}</p>
+            <p class="small text-white-50">${tr("Nous visons une première réponse sous 48 heures ouvrées, selon la disponibilité de notre équipe.", "We aim to send a first reply within 48 working hours, depending on our team's availability.")}</p>
             <a class="btn btn-primary btn-sm mb-2" href="${page("projet.html")}">${tr("Décrire mon besoin", "Describe my need")}</a>
             <a class="btn btn-light-outline btn-sm mb-2" data-platform="/connexion" href="#">${tr("Espace client", "Client area")}</a>
           </div>
@@ -204,10 +205,13 @@ function sendMessage(subject, lines) {
 }
 
 /** État d'avancement affiché sur chaque service (transparence sur ce qui est prêt). */
+// Disponible : prestations numériques que l'équipe réalise dès maintenant. Sur demande : expertise ou partenaire à mobiliser.
+const AVAILABLE_NOW = ["lab", "ai"];
 function serviceState(s) {
-  return s.branch === "impact"
-    ? { cls: "prep", icon: "bi-hourglass-split", label: tr("En préparation", "In preparation") }
-    : { cls: "ok", icon: "bi-check-circle", label: tr("Sur demande · sur devis", "On request · quoted") };
+  if (s.branch === "impact") return { key: "prep", cls: "prep", icon: "bi-hourglass-split", label: tr("En préparation", "In preparation") };
+  return AVAILABLE_NOW.includes(s.id)
+    ? { key: "ok", cls: "ok", icon: "bi-check-circle", label: tr("Disponible", "Available") }
+    : { key: "req", cls: "req", icon: "bi-people", label: tr("Sur demande", "On request") };
 }
 /** Action proposée : un devis pour Pro, un soutien pour les programmes Impact (pas encore lancés). */
 function serviceAction(s) {
@@ -291,7 +295,7 @@ function wireServiceModal() {
   });
 }
 
-const statusOrder = (s) => (s.branch === "pro" ? 0 : 1);
+const statusOrder = (s) => ({ ok: 0, req: 1, prep: 2 })[serviceState(s).key];
 
 /** Accueil : les services phares. */
 function renderFlagships() {
@@ -321,8 +325,19 @@ function renderCatalog() {
         (!q || [s.name, s.problem, s.solution, s.audience].some((v) => v.toLowerCase().includes(q))),
     ).sort((a, b) => statusOrder(a) - statusOrder(b));
     document.getElementById("catalog-count").textContent = `${list.length} service${list.length > 1 ? "s" : ""}`;
+    const GROUPS = [
+      ["ok", tr("Disponible", "Available"), tr("Prestations que nous pouvons réaliser et livrer dès maintenant.", "Services we can deliver right now.")],
+      ["req", tr("Sur demande", "On request"), tr("Prestations qui nécessitent de mobiliser une expertise, une partenaire ou des ressources.", "Services that require mobilising expertise, a partner or resources.")],
+      ["prep", tr("En préparation", "In preparation"), tr("Programmes dont le financement, les partenaires ou les pilotes restent à organiser. Ils ne sont pas encore disponibles.", "Programmes whose funding, partners or pilots are still to be organised. They are not available yet.")],
+    ];
     grid.innerHTML = list.length
-      ? list.map((s) => `<div class="col-md-6 col-xl-4">${serviceCard(s)}</div>`).join("")
+      ? GROUPS.map(([key, title, sub]) => {
+          const items = list.filter((s) => serviceState(s).key === key);
+          return items.length
+            ? `<div class="col-12 catalog-group"><h3 class="h4 font-display mb-1">${title} <span class="text-soft fs-6">· ${items.length}</span></h3><p class="small text-soft mb-0">${sub}</p></div>` +
+                items.map((s) => `<div class="col-md-6 col-xl-4">${serviceCard(s)}</div>`).join("")
+            : "";
+        }).join("")
       : `<div class="col-12"><p class="card-jg p-5 text-center text-muted">${tr("Aucun service ne correspond à votre recherche.", "No service matches your search.")}</p></div>`;
     observeReveals();
     document.querySelectorAll("[data-branch]").forEach((b) => b.classList.toggle("active", b.dataset.branch === state.branch));

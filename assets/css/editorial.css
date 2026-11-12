@@ -772,6 +772,12 @@
 .lang-toggle a:hover { color: #fff; }
 .lang-toggle .on { background: var(--jg-gold-light); color: var(--jg-plum); }
 
+.badge-status.state-req { background: #fff; color: #7a5a1e; }
+.catalog-group { margin-top: 2.5rem; }
+.catalog-group:first-child { margin-top: 0; }
+.legal h2 { font-family: "Cinzel", serif; font-size: 1.3rem; color: var(--jg-plum); margin-top: 2.5rem; }
+.legal p, .legal li { color: rgba(33,7,33,.75); }
+
 /* ==========================================================================
    Transparence : états d'avancement (audit de crédibilité)
    ========================================================================== */
@@ -786,3 +792,4 @@
 .works-title { grid-column: 1 / -1; margin-top: 1.5rem; }
 h2.works-title, .works-title h2 { font-family: "Cinzel", serif; font-size: 1.6rem; color: var(--jg-plum); }
 .works-title:first-child { margin-top: 0; }
+#catalog-count { margin-bottom: 1.75rem; }

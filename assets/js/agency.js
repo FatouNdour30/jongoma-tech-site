@@ -166,10 +166,10 @@ const DOMAINS = window.JG_EN?.DOMAINS || [
 
 /* ---------- Méthodologie ---------- */
 const METHOD = window.JG_EN?.METHOD || [
-  { t: "Écouter", d: "Un premier échange pour comprendre votre besoin, votre public et vos contraintes. Nous visons une première réponse sous 48 heures ouvrées.", out: "Note de cadrage" },
+  { t: "Écouter", d: "Un premier échange pour comprendre votre besoin, votre public et vos contraintes. Nous visons une première réponse sous 48 heures ouvrées, selon la disponibilité de notre équipe.", out: "Note de cadrage" },
   { t: "Comprendre le terrain", d: "Entretiens, enquêtes, visites : nous partons de la réalité de vos utilisatrices, pas de suppositions.", out: "Synthèse terrain" },
   { t: "Concevoir", d: "Parcours, maquettes et prototype interactif, validés avec vous avant de développer quoi que ce soit.", out: "Prototype et devis détaillé" },
-  { t: "Réaliser", d: "Développement par étapes courtes avec une démonstration à chaque étape. Pour les missions de terrain, des agentes locales interviennent sur place.", out: "Démonstrations régulières" },
+  { t: "Réaliser", d: "Développement par étapes courtes avec une démonstration à chaque étape. Pour les missions de terrain, des agentes locales interviendront sur place, au fur et à mesure de la constitution de notre réseau.", out: "Démonstrations régulières" },
   { t: "Prouver", d: "Tests avec de vraies utilisatrices, recette, preuves horodatées. Rien n'est livré sans avoir été vérifié.", out: "Rapport de recette" },
   { t: "Accompagner", d: "Mise en ligne, formation de vos équipes, maintenance et compte rendu de chaque intervention.", out: "Formation et support" },
 ];
@@ -318,7 +318,7 @@ const RESOURCES = window.JG_EN?.RESOURCES || [
 /* ---------- Blog ---------- */
 const POSTS = window.JG_EN?.POSTS || [
   { slug: "startup-feminine", cat: "Jongoma", photo: "equipe.jpg", read: 4,
-    title: "Pourquoi une startup tech 100 % féminine ?",
+    title: "Pourquoi une startup tech fondée et dirigée par des femmes ?",
     excerpt: "Les femmes sont les premières touchées par les maux de notre société et les dernières servies par la technologie. Nous avons décidé de changer cela, de l'intérieur.",
     body: [
       "Santé des mamans, violences, accès aux terres, école des filles, emploi, banque : les difficultés pèsent d'abord sur les femmes. Pourtant, les outils numériques sont rarement pensés pour elles, ni dans leur langue, ni pour leur téléphone, ni pour leur quotidien.",
@@ -447,7 +447,8 @@ function renderRealisations() {
         </div>
         <div class="rc-info">
           <div class="sc-count"><b>${pad(i + 1)}</b><span>/ ${total}</span></div>
-          <p class="small-label mt-3 mb-2">${escA(r.kind)} · ${escA(r.sector)}</p>
+          <p class="mt-3 mb-2"><span class="status-pill ${r.url ? "ok" : "prep"}">${r.url ? tr("Réalisé et livré", "Completed and delivered") : tr("En cours de réalisation", "In progress")}</span></p>
+          <p class="small-label mb-2">${escA(r.kind)} · ${escA(r.sector)}</p>
           <h3 class="font-display text-cream mb-3">${escA(r.name)}</h3>
           <p class="text-soft mb-4">${escA(r.text)}</p>
           <div class="d-flex flex-wrap gap-2 mb-4">${r.poles.map((id) => `<span class="tag-ed">${escA(poleById(id).title)}</span>`).join("")}</div>
@@ -466,7 +467,8 @@ function renderRealisations() {
         ${r.url ? `<a class="rc-frame" href="${r.url}" target="_blank" rel="noopener" aria-label="${tr("Visiter", "Visit")} ${escA(r.name)} (${tr("nouvel onglet", "new tab")})">${frameInner}</a>` : `<div class="rc-frame">${frameInner}</div>`}
         <div class="rc-info">
           <div class="sc-count"><b>${pad(i + 1)}</b><span>/ ${total}</span></div>
-          <p class="small-label mt-3 mb-2">${escA(r.kind)} · ${escA(r.sector)}</p>
+          <p class="mt-3 mb-2"><span class="status-pill ${r.url ? "ok" : "prep"}">${r.url ? tr("Réalisé et livré", "Completed and delivered") : tr("En cours de réalisation", "In progress")}</span></p>
+          <p class="small-label mb-2">${escA(r.kind)} · ${escA(r.sector)}</p>
           <h3 class="font-display text-cream mb-3">${escA(r.name)}</h3>
           <p class="text-soft mb-4">${escA(r.text)}</p>
           <div class="d-flex flex-wrap gap-2 mb-4">${r.poles.map((id) => `<span class="tag-ed">${escA(poleById(id).title)}</span>`).join("")}</div>
@@ -528,10 +530,11 @@ function renderPortfolio() {
   const draw = () => {
     filters.querySelectorAll("[data-work]").forEach((b) => b.classList.toggle("active", b.dataset.work === current));
     const list = WORKS.filter((w) => current === "all" || w.poles.includes(current));
+    const state = (w) => (w.internal ? tr("Projet interne", "In-house project") : w.soon ? tr("En cours de réalisation", "In progress") : w.real ? tr("Réalisé et livré", "Completed and delivered") : tr("Projet conceptuel", "Concept project"));
     const card = (w) => `
       <article class="work reveal">
         <div class="work-ph"><img src="assets/img/${w.photo}" alt="" loading="lazy">
-          <span class="work-badge ${w.real ? "real" : ""}">${w.internal ? tr("Projet interne", "In-house project") : w.real ? `<i class="bi bi-patch-check-fill me-1"></i>${tr("Réalisation Jongoma", "Built by Jongoma")}` : tr("Exemple illustratif", "Illustrative example")}</span></div>
+          <span class="work-badge ${w.real ? "real" : ""}">${w.real && !w.soon && !w.internal ? '<i class="bi bi-patch-check-fill me-1"></i>' : ""}${state(w)}</span></div>
         <div class="work-body">
           <p class="small-label mb-2">${escA(w.domain)}</p>
           <h3 class="font-display h5 text-cream">${escA(w.title)}</h3>
@@ -545,7 +548,7 @@ function renderPortfolio() {
     grid.innerHTML =
       (real.length ? `<h2 class="works-title">${tr("Réalisations", "Our work")}</h2>${real.map(card).join("")}` : "") +
       (examples.length
-        ? `<div class="works-title"><h2 class="mb-1">${tr("Exemples illustratifs", "Illustrative examples")}</h2><p class="small text-soft mb-0">${tr(
+        ? `<div class="works-title"><h2 class="mb-1">${tr("Projets conceptuels", "Concept projects")}</h2><p class="small text-soft mb-0">${tr(
             "Ce que nous pouvons construire pour vous. Ce ne sont ni des projets livrés, ni des références clients.",
             "What we can build for you. These are neither delivered projects nor client references.",
           )}</p></div>${examples.map(card).join("")}`

@@ -112,7 +112,7 @@
               </div>
               <a class="btn btn-sm btn-gold flex-shrink-0" href="${serviceAction(s).href}">${s.branch === "impact" ? tr("Soutenir", "Support") : tr("Devis", "Quote")}</a>
             </div>`).join("")}
-          ${best.length ? "" : `<p class="text-soft">${tr("Décrivez votre situation : nous visons une première réponse sous 48 heures ouvrées.", "Describe your situation: we aim to reply within 48 working hours.")}</p>`}
+          ${best.length ? "" : `<p class="text-soft">${tr("Décrivez votre situation. Nous visons une première réponse sous 48 heures ouvrées, selon la disponibilité de notre équipe.", "Describe your situation. We aim to send a first reply within 48 working hours, depending on our team's availability.")}</p>`}
         </div>
         <div class="d-flex flex-wrap gap-2 mt-4">
           <a class="btn btn-primary" href="${page("projet.html")}">${tr("Décrire mon besoin", "Describe my need")}</a>
@@ -176,7 +176,7 @@
         draw(t.dataset.svcTab);
       }),
     );
-    draw("impact");
+    draw("pro");
   }
 
   document.addEventListener("DOMContentLoaded", () => {

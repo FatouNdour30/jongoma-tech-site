@@ -146,10 +146,10 @@ window.JG_EN = {
   ],
 
   METHOD: [
-    { t: "Listen", d: "A first conversation to understand your need, your audience and your constraints. We aim to reply within 48 working hours.", out: "Scoping note" },
+    { t: "Listen", d: "A first conversation to understand your need, your audience and your constraints. We aim to send a first reply within 48 working hours, depending on our team's availability.", out: "Scoping note" },
     { t: "Understand the field", d: "Interviews, surveys, visits: we start from your users' reality, not from assumptions.", out: "Field summary" },
     { t: "Design", d: "User journeys, mock-ups and an interactive prototype, approved with you before anything is built.", out: "Prototype and detailed quote" },
-    { t: "Build", d: "Development in short steps with a demo at each one. For field missions, local agents work on site.", out: "Regular demos" },
+    { t: "Build", d: "Development in short steps with a demo at each one. For field missions, local agents will work on site, as our network is built up.", out: "Regular demos" },
     { t: "Prove", d: "Testing with real users, acceptance, time-stamped evidence. Nothing is delivered until it has been checked.", out: "Acceptance report" },
     { t: "Support", d: "Go-live, training for your teams, maintenance and a report after every intervention.", out: "Training and support" },
   ],
@@ -291,7 +291,7 @@ window.JG_EN = {
 
   POSTS: [
     { slug: "startup-feminine", cat: "Jongoma", photo: "equipe.jpg", read: 4,
-      title: "Why a 100% women-led tech startup?",
+      title: "Why a tech startup founded and led by women?",
       excerpt: "Women are the first hit by our society's problems and the last served by technology. We decided to change that, from the inside.",
       body: [
         "Mothers' health, violence, access to land, girls' schooling, jobs, banking: the burden falls first on women. Yet digital tools are rarely designed for them, in their language, for their phones or for their daily lives.",
