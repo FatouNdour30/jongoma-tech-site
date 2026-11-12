@@ -299,27 +299,34 @@
     <!-- ============ Services ============ -->
     <section class="section band-cream">
       <div class="container">
-        <div class="reveal mb-4" style="max-width:46rem">
-          <p class="kicker">Our services</p>
-          <h2 class="display-ed text-cream mt-3" style="font-size:clamp(2rem,4vw,3.2rem)">Every solution meets a real need.</h2>
-          <p class="text-soft mt-3 mb-0">We do not sell technology for its own sake. Each listing starts with the need it meets and shows its real status: what we offer today, and what we are preparing.</p>
+        <div class="row g-4 align-items-end mb-5 reveal">
+          <div class="col-lg-7">
+            <p class="kicker">Our services</p>
+            <h2 class="display-ed text-cream mt-3 mb-0" style="font-size:clamp(2rem,4vw,3.2rem)">Every solution meets a real need.</h2>
+          </div>
+          <div class="col-lg-5">
+            <p class="text-soft mb-0 svc-intro">We do not sell technology for its own sake. Each listing starts with the need it meets and shows its real status: what we offer today, and what we are preparing.</p>
+          </div>
         </div>
-        <div class="svc-stats reveal">
+        <div class="svc-stats reveal" role="tablist">
           <div class="svc-stat total">
+            <span class="lbl">In total</span>
             <strong data-count="total">26</strong>
             <span>Solutions and programmes designed around realities on the ground.</span>
           </div>
-          <button type="button" class="svc-stat active" data-svc-tab="pro" aria-pressed="true">
+          <button type="button" class="svc-stat active" data-svc-tab="pro" aria-pressed="true"><span class="lbl">Pillar 01</span>
             <strong data-count="pro">12</strong>
             <span class="t">Jongoma Pro</span>
             <span>Digital services for organisations.</span>
-            <em class="status-pill ok">Offered today, on quotation</em>
+            <span class="st ok"><i></i>Offered today, on quotation</span>
+            <span class="go">Show these services <i class="bi bi-arrow-down-right"></i></span>
           </button>
-          <button type="button" class="svc-stat" data-svc-tab="impact" aria-pressed="false">
+          <button type="button" class="svc-stat" data-svc-tab="impact" aria-pressed="false"><span class="lbl">Pillar 02</span>
             <strong data-count="impact">14</strong>
             <span class="t">Jongoma Impact</span>
             <span>Social impact programmes, designed for women and their families.</span>
-            <em class="status-pill prep">In preparation: not yet deployed</em>
+            <span class="st prep"><i></i>In preparation: not yet deployed</span>
+            <span class="go">Show these programmes <i class="bi bi-arrow-down-right"></i></span>
           </button>
         </div>
         <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">

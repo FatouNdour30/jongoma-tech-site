@@ -299,27 +299,34 @@
     <!-- ============ Services ============ -->
     <section class="section band-cream">
       <div class="container">
-        <div class="reveal mb-4" style="max-width:46rem">
-          <p class="kicker">Nos services</p>
-          <h2 class="display-ed text-cream mt-3" style="font-size:clamp(2rem,4vw,3.2rem)">Chaque solution répond à un besoin réel.</h2>
-          <p class="text-soft mt-3 mb-0">Nous ne vendons pas de la technologie pour la technologie. Chaque fiche commence par le besoin auquel elle répond, et indique son statut réel : ce que nous proposons aujourd'hui, et ce que nous préparons.</p>
+        <div class="row g-4 align-items-end mb-5 reveal">
+          <div class="col-lg-7">
+            <p class="kicker">Nos services</p>
+            <h2 class="display-ed text-cream mt-3 mb-0" style="font-size:clamp(2rem,4vw,3.2rem)">Chaque solution répond à un besoin réel.</h2>
+          </div>
+          <div class="col-lg-5">
+            <p class="text-soft mb-0 svc-intro">Nous ne vendons pas de la technologie pour la technologie. Chaque fiche commence par le besoin auquel elle répond, et indique son statut réel : ce que nous proposons aujourd'hui, et ce que nous préparons.</p>
+          </div>
         </div>
-        <div class="svc-stats reveal">
+        <div class="svc-stats reveal" role="tablist">
           <div class="svc-stat total">
+            <span class="lbl">Au total</span>
             <strong data-count="total">26</strong>
             <span>Solutions et programmes pensés pour répondre aux réalités du terrain.</span>
           </div>
-          <button type="button" class="svc-stat active" data-svc-tab="pro" aria-pressed="true">
+          <button type="button" class="svc-stat active" data-svc-tab="pro" aria-pressed="true"><span class="lbl">Pôle 01</span>
             <strong data-count="pro">12</strong>
             <span class="t">Jongoma Pro</span>
             <span>Services numériques pour les organisations.</span>
-            <em class="status-pill ok">Proposés aujourd'hui, sur devis</em>
+            <span class="st ok"><i></i>Proposés aujourd'hui, sur devis</span>
+            <span class="go">Afficher ces services <i class="bi bi-arrow-down-right"></i></span>
           </button>
-          <button type="button" class="svc-stat" data-svc-tab="impact" aria-pressed="false">
+          <button type="button" class="svc-stat" data-svc-tab="impact" aria-pressed="false"><span class="lbl">Pôle 02</span>
             <strong data-count="impact">14</strong>
             <span class="t">Jongoma Impact</span>
             <span>Programmes à impact social, conçus pour les femmes et leurs familles.</span>
-            <em class="status-pill prep">En préparation : pas encore déployés</em>
+            <span class="st prep"><i></i>En préparation : pas encore déployés</span>
+            <span class="go">Afficher ces programmes <i class="bi bi-arrow-down-right"></i></span>
           </button>
         </div>
         <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
