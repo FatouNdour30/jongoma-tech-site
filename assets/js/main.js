@@ -135,8 +135,8 @@ function renderFooter() {
     <div class="border-top">
       <div class="container py-3 d-flex flex-column flex-md-row justify-content-between gap-2 small text-muted">
         <span><i class="bi bi-geo-alt text-gold me-1"></i> ${tr(
-          "Basée à Dakar, Sénégal · Vos informations ne sont ni vendues ni partagées.",
-          "Based in Dakar, Senegal · Your information is never sold or shared.",
+          "Basée à Dakar, Sénégal · Photos d'illustration : Unsplash.",
+          "Based in Dakar, Senegal · Illustrative photos: Unsplash.",
         )}</span>
         <span>© <span data-year></span> Jongoma Tech · ${tr("Tous droits réservés · Photos d'illustration (Unsplash)", "All rights reserved · Illustrative photos (Unsplash)")}</span>
       </div>

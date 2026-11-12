@@ -12,6 +12,9 @@
   function rotator() {
     const el = document.querySelector("[data-rotator]");
     if (!el) return;
+    // Les mots suivants sont ajoutés ici : le HTML n'en contient qu'un, pour rester lisible sans JavaScript.
+    const more = tr(["de la santé.", "de l'école.", "des revenus.", "de la protection."], ["health.", "education.", "income.", "protection."]);
+    more.forEach((w) => { const s = document.createElement("span"); s.className = "gold-gradient"; s.textContent = w; el.append(s); });
     const words = [...el.children];
     let i = 0;
     words[0].classList.add("on");

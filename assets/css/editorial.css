@@ -793,3 +793,9 @@
 h2.works-title, .works-title h2 { font-family: "Cinzel", serif; font-size: 1.6rem; color: var(--jg-plum); }
 .works-title:first-child { margin-top: 0; }
 #catalog-count { margin-bottom: 1.75rem; }
+/* Photos d'illustration signalées comme telles */
+.illus { position: relative; }
+.illus::after { content: "Photo d'illustration"; position: absolute; left: .75rem; bottom: .75rem; z-index: 3; font-size: .68rem; font-weight: 600; padding: .2rem .6rem; border-radius: 999px; background: rgba(22,4,22,.72); color: #f6ecdc; pointer-events: none; }
+html[lang="en"] .illus::after { content: "Illustrative photo"; }
+.arches.illus::after { bottom: -1.5rem; left: 0; }
+.notice-soon { display: inline-block; font-size: .85rem; font-weight: 600; padding: .45rem .9rem; border-radius: 999px; background: rgba(200,4,106,.08); color: var(--jg-magenta); }
