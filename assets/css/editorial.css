@@ -771,3 +771,18 @@
 .lang-toggle a, .lang-toggle span { padding: .25rem .65rem; border-radius: 999px; font-size: .75rem; font-weight: 700; letter-spacing: .06em; text-decoration: none; color: rgba(246,236,220,.75); }
 .lang-toggle a:hover { color: #fff; }
 .lang-toggle .on { background: var(--jg-gold-light); color: var(--jg-plum); }
+
+/* ==========================================================================
+   Transparence : états d'avancement (audit de crédibilité)
+   ========================================================================== */
+.status-pill { display: inline-flex; align-items: center; font-size: .75rem; font-weight: 700; padding: .3rem .75rem; border-radius: 999px; }
+.status-pill.ok { background: rgba(25,135,84,.1); color: #146c43; }
+.status-pill.prep { background: rgba(200,4,106,.08); color: var(--jg-magenta); }
+.status-pill.dev { background: #f3ece6; color: #7a6470; }
+.status-card { display: flex; flex-direction: column; }
+.status-card .link-gold { margin-top: auto; }
+.badge-status.state-ok { background: #fff; color: #146c43; }
+.badge-status.state-prep { background: #fff; color: var(--jg-magenta); }
+.works-title { grid-column: 1 / -1; margin-top: 1.5rem; }
+h2.works-title, .works-title h2 { font-family: "Cinzel", serif; font-size: 1.6rem; color: var(--jg-plum); }
+.works-title:first-child { margin-top: 0; }

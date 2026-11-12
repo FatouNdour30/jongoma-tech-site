@@ -91,8 +91,7 @@
         (p.branch === "any" || s.branch === p.branch ? 2 : 0) +
         (p.prefer?.includes(s.id) ? 4 : 0) +
         (p.theme && s.themes.includes(p.theme) ? 2 : 0) +
-        (s.status === "flagship" ? 1 : 0) -
-        (s.status === "soon" ? 1 : 0);
+        0;
       const best = services
         .map((s) => ({ s, n: score(s) }))
         .filter((x) => x.n >= 3)
@@ -108,15 +107,15 @@
             <div class="result-card">
               ${s.photo ? `<img src="assets/img/${s.photo}" alt="">` : '<span class="d-grid place-items-center rounded-4" style="width:4.5rem;height:4.5rem;background:var(--jg-magenta)"></span>'}
               <div class="flex-grow-1">
-                <p class="fw-bold text-cream mb-0">${esc(s.name)}${s.status === "soon" ? ` <span class="badge text-bg-light ms-1">${tr("Bientôt", "Soon")}</span>` : ""}</p>
+                <p class="fw-bold text-cream mb-0">${esc(s.name)} <span class="badge text-bg-light ms-1">${serviceState(s).label}</span></p>
                 <p class="small text-soft mb-0">${esc(s.problem)}</p>
               </div>
-              <a class="btn btn-sm btn-gold flex-shrink-0" href="${toPlatform(`/demande?service=${s.id}`)}">${tr("Demander", "Request")}</a>
+              <a class="btn btn-sm btn-gold flex-shrink-0" href="${serviceAction(s).href}">${s.branch === "impact" ? tr("Soutenir", "Support") : tr("Devis", "Quote")}</a>
             </div>`).join("")}
-          ${best.length ? "" : `<p class="text-soft">${tr("Décrivez votre situation : une responsable vous oriente vers la bonne solution sous 48 heures.", "Describe your situation: a manager will point you to the right solution within 48 hours.")}</p>`}
+          ${best.length ? "" : `<p class="text-soft">${tr("Décrivez votre situation : nous visons une première réponse sous 48 heures ouvrées.", "Describe your situation: we aim to reply within 48 working hours.")}</p>`}
         </div>
         <div class="d-flex flex-wrap gap-2 mt-4">
-          <a class="btn btn-primary" href="${toPlatform("/demande")}">${tr("Décrire mon besoin", "Describe my need")}</a>
+          <a class="btn btn-primary" href="${page("projet.html")}">${tr("Décrire mon besoin", "Describe my need")}</a>
           <button type="button" class="btn btn-ghost" data-restart>${tr("Recommencer", "Start again")}</button>
         </div>`;
       box.onclick = (e) => e.target.closest("[data-restart]") && step1();
@@ -148,7 +147,7 @@
   function serviceCarousel() {
     const track = document.getElementById("svc-track");
     if (!track) return;
-    const order = (s) => (s.status === "flagship" ? 0 : s.status === "soon" ? 2 : 1);
+    const order = () => 0;
     const draw = (branch) => {
       track.innerHTML = services
         .filter((s) => s.branch === branch)
@@ -157,13 +156,13 @@
           (s) => `
         <article class="svc-ed">
           <div class="ph">${s.photo ? `<img src="assets/img/${s.photo}" alt="${esc(s.alt)}" loading="lazy">` : ""}
-            ${s.status === "flagship" ? `<span class="badge-status flagship"><i class="bi bi-star-fill me-1"></i>${tr("Service phare", "Flagship")}</span>` : s.status === "soon" ? `<span class="badge-status soon">${tr("Bientôt", "Soon")}</span>` : ""}</div>
+            <span class="badge-status state-${serviceState(s).cls}">${serviceState(s).label}</span></div>
           <div class="p-4 d-flex flex-column flex-grow-1">
             <h3 class="font-display h5 mb-2">${esc(s.name)}</h3>
             <p class="small text-muted flex-grow-1 mb-3">${esc(s.problem)}</p>
             <div class="d-flex gap-2">
               <button type="button" class="btn btn-sm btn-plum" data-service="${s.id}">${tr("Détails", "Details")}</button>
-              <a class="btn btn-sm btn-soft" href="${toPlatform(`/demande?service=${s.id}`)}">${tr("Demander", "Request")}</a>
+              <a class="btn btn-sm btn-soft" href="${serviceAction(s).href}">${s.branch === "impact" ? tr("Soutenir", "Support") : tr("Devis", "Quote")}</a>
             </div>
           </div>
         </article>`,

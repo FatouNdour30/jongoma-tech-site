@@ -107,13 +107,13 @@ window.JG_EN = {
       id: "support", icon: "bi-headset", photo: "pro-bureau.jpg",
       title: "Managed services & IT support",
       lead: "Your tools kept up to date and monitored, so you can focus on your work.",
-      text: "Every digital product needs maintenance, updates and quick fixes when something goes wrong. Outsource your support and maintenance: we check your tools regularly to prevent breakdowns, and you follow every intervention in your client area.",
+      text: "Every digital product needs maintenance, updates and quick fixes when something goes wrong. Outsource your support and maintenance: we check your tools regularly to prevent breakdowns, and you receive a report after every intervention.",
       items: [
         "Management and monitoring of your websites",
         "Domain names and professional email",
         "Training on day-to-day use and webmastering",
         "IT equipment monitoring and workstation setup",
-        "Incident tracking in your client area",
+        "Incident tracking and regular reports",
       ],
     },
   ],
@@ -146,12 +146,12 @@ window.JG_EN = {
   ],
 
   METHOD: [
-    { t: "Listen", d: "A first conversation to understand your need, your audience and your constraints. A manager replies within 48 hours.", out: "Scoping note" },
+    { t: "Listen", d: "A first conversation to understand your need, your audience and your constraints. We aim to reply within 48 working hours.", out: "Scoping note" },
     { t: "Understand the field", d: "Interviews, surveys, visits: we start from your users' reality, not from assumptions.", out: "Field summary" },
     { t: "Design", d: "User journeys, mock-ups and an interactive prototype, approved with you before anything is built.", out: "Prototype and detailed quote" },
-    { t: "Build", d: "Development in short steps with a demo at each one. For field missions, our agents work on site.", out: "Regular demos" },
+    { t: "Build", d: "Development in short steps with a demo at each one. For field missions, local agents work on site.", out: "Regular demos" },
     { t: "Prove", d: "Testing with real users, acceptance, time-stamped evidence. Nothing is delivered until it has been checked.", out: "Acceptance report" },
-    { t: "Support", d: "Go-live, training for your teams, maintenance and tracking of every intervention in your client area.", out: "Training and support" },
+    { t: "Support", d: "Go-live, training for your teams, maintenance and a report after every intervention.", out: "Training and support" },
   ],
 
   REALISATIONS: [
@@ -182,9 +182,7 @@ window.JG_EN = {
   ],
 
   WORKS_EXTRA: [
-    { real: true, title: "The Jongoma platform", poles: ["logiciel", "design", "cloud"], domain: "Social networks & communities", photo: "communaute.jpg",
-      text: "A complete client area: requests and files tracked step by step, quotes and receipts, attachments, a women's Community and Chats with voice messages.", link: "plateforme.html" },
-    { real: true, title: "The Jongoma Tech website", poles: ["design", "logiciel", "creation"], domain: "Design & prototyping", photo: "hero.jpg",
+    { real: true, internal: true, title: "The Jongoma Tech website", poles: ["design", "logiciel", "creation"], domain: "Design & prototyping", photo: "hero.jpg",
       text: "The site you are visiting: editorial art direction, a two-question guidance quiz, a filterable catalogue of our services.", link: "index.html" },
     { title: "Online shop for a women's food-processing cooperative", poles: ["logiciel", "marketing"], domain: "E-commerce", photo: "commercante.jpg",
       text: "Catalogue, mobile ordering, Wave and Orange Money payment, delivery tracking and a WhatsApp launch campaign." },
@@ -241,8 +239,8 @@ window.JG_EN = {
         <li>Require a receipt for every purchase of materials.</li>
         <li>Have the land documents checked before you start.</li>
         <li>Arrange for an independent, trusted person to make surprise visits.</li>
-      </ul><p>This is exactly what the Jongoma Diaspora service does, with verified agents and tracking in your file.</p>`,
-      cta: ["services.html?pole=impact", "Discover Jongoma Diaspora"] },
+      </ul><p>This is the approach of the Jongoma Diaspora programme, currently in preparation.</p>`,
+      cta: ["services.html?pole=impact", "Discover the programme"] },
     { id: "lancement", type: "Checklist", icon: "bi-check2-square", title: "Before putting a website online",
       desc: "The essential checks on launch day.",
       body: `<ul>
@@ -273,7 +271,7 @@ window.JG_EN = {
         <li>Compare names, dates and numbers with other official documents.</li>
         <li>Never pay money on the basis of a copy alone.</li>
         <li>Keep the messages and copies: they may serve as evidence.</li>
-      </ul><p>Our document authentication service checks with the official sources for you.</p>`,
+      </ul><p>On request, Jongoma Tech supports institutions that want to make their documents verifiable.</p>`,
       cta: ["services.html?pole=pro", "See the service"] },
     { id: "glossaire", type: "Glossary", icon: "bi-book", title: "Digital words made simple",
       desc: "The words you hear in a digital project, explained without jargon.",
@@ -298,9 +296,9 @@ window.JG_EN = {
       body: [
         "Mothers' health, violence, access to land, girls' schooling, jobs, banking: the burden falls first on women. Yet digital tools are rarely designed for them, in their language, for their phones or for their daily lives.",
         ["h", "Designing with, not for"],
-        "An all-women team, from the field to management, does not guarantee everything. But it changes the way questions are asked. Who will use this tool? Can she read? Does she have a smartphone, airtime, time? These questions become the basis of every project.",
+        "A company led by women does not guarantee everything. But it changes the way questions are asked. Who will use this tool? Can she read? Does she have a smartphone, airtime, time? These questions become the basis of every project.",
         ["h", "A company, not a charity"],
-        "Jongoma Pro sells technology services to companies, NGOs and institutions. That income, together with donor funding, pays for Jongoma Impact, our free or nearly free programmes for women and families. This model is what allows us to last.",
+        "Jongoma Pro sells technology services to companies, NGOs and institutions. That income, together with donor support, will fund Jongoma Impact, our programmes designed to be free or nearly free for women and families. This model is what should allow us to last.",
         "Our motto sums up our standard: what Jongoma promises, Jongoma proves.",
       ] },
     { slug: "site-ou-application", cat: "Engineering", photo: "tech-code.jpg", read: 5,
@@ -322,9 +320,9 @@ window.JG_EN = {
       body: [
         "Many digital tools assume you read French easily and have a good connection. For many of the women we serve, that is not the case.",
         ["h", "Voice first"],
-        "A voice message often feels more natural than a form. On the Jongoma platform, you can write to us, but you can also talk to us.",
+        "A voice message often feels more natural than a form. That is why we build it into our tools from the start.",
         ["h", "Pictures that speak"],
-        "Pictograms, colours and real photos help people understand without reading. Every icon is tested with real users.",
+        "Pictograms, colours and real photos help people understand without reading. Testing them with real users is essential.",
         ["h", "Always light"],
         "Pages that load fast, compressed images, features that work offline and sync later. It is less spectacular, but it is what makes a tool actually used.",
       ] },
@@ -347,9 +345,9 @@ window.JG_EN = {
       body: [
         "Many social programmes struggle to show what they have really changed. It is not always a lack of results; it is often a lack of evidence.",
         ["h", "Collect as it happens"],
-        "A photo taken on site, with the date, time and location, is worth more than a table filled in afterwards. Our enumerators collect this evidence even without network coverage.",
+        "A photo taken on site, with the date, time and location, is worth more than a table filled in afterwards. Offline data collection tools make it possible to gather this evidence even without network coverage.",
         ["h", "Make evidence easy to check"],
-        "The donor follows progress in their own space, without waiting for the final report.",
+        "The donor can then follow progress without waiting for the final report.",
         ["h", "Never embellish"],
         "Our rule: a single false figure can destroy trust. We prefer a modest, true result to a spectacular promise.",
       ] },
@@ -361,7 +359,7 @@ window.JG_EN = {
         ["h", "Check at the source"],
         "The only reliable check is with the authority that issued the document: town hall, court, university, land registry. It takes time when you are far away, or when you do not know who to ask.",
         ["h", "What we do"],
-        "Our authentication service carries out these checks for you and gives you a documented answer. It serves individuals, companies that are hiring and institutions.",
+        "On request, Jongoma Tech supports institutions that want to make their documents verifiable, for example with a QR code linked to a secure register.",
       ] },
   ],
 

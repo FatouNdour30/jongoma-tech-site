@@ -17,6 +17,8 @@ const JONGOMA_CONFIG = {
   lang: LANG,
   // false tant que la plateforme n'est pas en ligne : les liens « Espace client », « Créer mon compte »… sont masqués.
   platformOnline: false,
+  // Adresse qui reçoit les formulaires (projet, partenariat). Vide : le message est affiché pour être copié.
+  contactEmail: "",
 };
 
 const platform = (path) => `${JONGOMA_CONFIG.platformUrl}/${JONGOMA_CONFIG.lang}${path}`;
@@ -92,7 +94,6 @@ function renderFooter() {
   if (!el) return;
   const links = [
     ...NAV,
-    { href: "plateforme.html", label: tr("La plateforme", "The platform") },
     { href: "projet.html", label: tr("J'ai un projet", "Start a project") },
     { href: "index.html#partenaire", label: tr("Devenir partenaire", "Become a partner") },
   ];
@@ -106,7 +107,7 @@ function renderFooter() {
             <img src="assets/img/logo-mark.png" alt="" style="height:52px">
             <img src="assets/img/logo-wordmark.png" alt="Jongoma Tech" class="brand-word-img" style="height:32px">
           </a>
-          <p><span class="pill"><span class="dot"></span> ${tr("Startup africaine · 100 % féminine", "African startup · 100% women-led")}</span></p>
+          <p><span class="pill"><span class="dot"></span> ${tr("Startup africaine · fondée et dirigée par des femmes", "African startup · founded and led by women")}</span></p>
           <p class="text-muted" style="max-width:26rem">${tr(
             "Dirigée par des femmes, Jongoma Tech met la technologie au service des femmes et d'un monde meilleur, avec des solutions concrètes aux maux de notre société.",
             "Led by women, Jongoma Tech puts technology to work for women and a better world, with practical solutions to the problems our society faces.",
@@ -123,7 +124,7 @@ function renderFooter() {
         <div class="col-md-6 col-lg-4">
           <div class="rounded-xl p-4 text-white" style="background:linear-gradient(135deg,var(--jg-plum-2),var(--jg-plum))">
             <p class="font-display fs-5 mb-2">${tr("Quel problème voulez-vous résoudre ?", "What problem do you want to solve?")}</p>
-            <p class="small text-white-50">${tr("Une responsable Jongoma vous répond en 48 heures.", "A Jongoma manager replies within 48 hours.")}</p>
+            <p class="small text-white-50">${tr("Nous visons une première réponse sous 48 heures ouvrées.", "We aim to reply within 48 working hours.")}</p>
             <a class="btn btn-primary btn-sm mb-2" href="${page("projet.html")}">${tr("Décrire mon besoin", "Describe my need")}</a>
             <a class="btn btn-light-outline btn-sm mb-2" data-platform="/connexion" href="#">${tr("Espace client", "Client area")}</a>
           </div>
@@ -132,9 +133,9 @@ function renderFooter() {
     </div>
     <div class="border-top">
       <div class="container py-3 d-flex flex-column flex-md-row justify-content-between gap-2 small text-muted">
-        <span><i class="bi bi-shield-check text-gold me-1"></i> ${tr(
-          "Vos données sont protégées conformément à la loi sénégalaise (CDP) et au RGPD.",
-          "Your data is protected under Senegalese law (CDP) and the GDPR.",
+        <span><i class="bi bi-geo-alt text-gold me-1"></i> ${tr(
+          "Basée à Dakar, Sénégal · Vos informations ne sont ni vendues ni partagées.",
+          "Based in Dakar, Senegal · Your information is never sold or shared.",
         )}</span>
         <span>© <span data-year></span> Jongoma Tech · ${tr("Tous droits réservés · Photos d'illustration (Unsplash)", "All rights reserved · Illustrative photos (Unsplash)")}</span>
       </div>
@@ -149,26 +150,76 @@ function wirePlatformLinks() {
   document.querySelectorAll("[data-platform]").forEach((a) => (a.href = platform(a.dataset.platform)));
   // Plateforme pas encore en ligne : on retire les accès au compte (et les blocs qui ne servent qu'à ça).
   if (!JONGOMA_CONFIG.platformOnline) document.querySelectorAll("[data-platform], [data-platform-only]").forEach((n) => n.remove());
-  // Formulaires « Quel problème voulez-vous résoudre ? » : la demande se termine sur la plateforme.
+  // Formulaires « Quel problème voulez-vous résoudre ? » : ils ouvrent le formulaire « J'ai un projet », pré-rempli.
   document.querySelectorAll("form[data-ask]").forEach((form) =>
     form.addEventListener("submit", (e) => {
       e.preventDefault();
       const data = new FormData(form);
       const params = new URLSearchParams();
       for (const key of ["besoin", "service"]) if (data.get(key)) params.set(key, String(data.get(key)).trim());
-      window.location.href = platform(`/demande${params.toString() ? `?${params}` : ""}`);
+      window.location.href = `${page("projet.html")}${params.toString() ? `?${params}` : ""}`;
     }),
   );
 }
 
+/**
+ * Envoi d'un formulaire : par e-mail si une adresse de contact est configurée,
+ * sinon le message est affiché dans une fenêtre pour être copié (aucune donnée n'est perdue).
+ */
+function sendMessage(subject, lines) {
+  const body = lines.filter(Boolean).join("\n");
+  if (JONGOMA_CONFIG.contactEmail) {
+    window.location.href = `mailto:${JONGOMA_CONFIG.contactEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    return;
+  }
+  let modalEl = document.getElementById("sendModal");
+  if (!modalEl) {
+    modalEl = document.createElement("div");
+    modalEl.className = "modal fade";
+    modalEl.id = "sendModal";
+    modalEl.tabIndex = -1;
+    modalEl.innerHTML = `<div class="modal-dialog modal-dialog-centered"><div class="modal-content rounded-xl"></div></div>`;
+    document.body.append(modalEl);
+  }
+  modalEl.querySelector(".modal-content").innerHTML = `
+    <div class="modal-header border-0 pb-0">
+      <h2 class="modal-title h4 font-display">${tr("Votre message est prêt", "Your message is ready")}</h2>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="${tr("Fermer", "Close")}"></button>
+    </div>
+    <div class="modal-body">
+      <p class="small">${tr(
+        "L'envoi en ligne est en cours d'activation. Copiez votre message pour le garder : nous publierons très bientôt notre adresse de contact.",
+        "Online sending is being activated. Copy your message to keep it: we will publish our contact address very soon.",
+      )}</p>
+      <textarea class="form-control small" rows="8" readonly>${escapeHtml(`${subject}\n\n${body}`)}</textarea>
+    </div>
+    <div class="modal-footer border-0">
+      <button type="button" class="btn btn-primary" data-copy-msg><i class="bi bi-clipboard me-1"></i>${tr("Copier le message", "Copy the message")}</button>
+    </div>`;
+  modalEl.querySelector("[data-copy-msg]").addEventListener("click", (e) => {
+    navigator.clipboard?.writeText(modalEl.querySelector("textarea").value);
+    e.currentTarget.innerHTML = `<i class="bi bi-check-lg me-1"></i>${tr("Copié", "Copied")}`;
+  });
+  bootstrap.Modal.getOrCreateInstance(modalEl).show();
+}
+
+/** État d'avancement affiché sur chaque service (transparence sur ce qui est prêt). */
+function serviceState(s) {
+  return s.branch === "impact"
+    ? { cls: "prep", icon: "bi-hourglass-split", label: tr("En préparation", "In preparation") }
+    : { cls: "ok", icon: "bi-check-circle", label: tr("Sur demande · sur devis", "On request · quoted") };
+}
+/** Action proposée : un devis pour Pro, un soutien pour les programmes Impact (pas encore lancés). */
+function serviceAction(s) {
+  return s.branch === "impact"
+    ? { href: `${page("index.html")}#partenaire`, label: tr("Soutenir ce programme", "Support this programme") }
+    : { href: `${page("projet.html")}?service=${s.id}`, label: tr("Demander un devis", "Request a quote") };
+}
+
 /* ---------- Cartes de services ---------- */
 function serviceCard(s) {
-  const status =
-    s.status === "flagship"
-      ? `<span class="badge-status flagship"><i class="bi bi-star-fill me-1"></i>${tr("Service phare", "Flagship")}</span>`
-      : s.status === "soon"
-        ? `<span class="badge-status soon"><i class="bi bi-clock me-1"></i>${tr("Bientôt", "Coming soon")}</span>`
-        : "";
+  const st = serviceState(s);
+  const status = `<span class="badge-status state-${st.cls}"><i class="bi ${st.icon} me-1"></i>${st.label}</span>`;
   const photo = s.photo
     ? `<img src="assets/img/${s.photo}" alt="${escapeHtml(s.alt)}" loading="lazy">`
     : '<div class="w-100 h-100 d-flex align-items-center justify-content-center"><i class="bi bi-patch-check text-white" style="font-size:4rem;opacity:.85"></i></div>';
@@ -187,7 +238,7 @@ function serviceCard(s) {
       <p class="small text-muted flex-grow-1">${escapeHtml(s.solution)}</p>
       <div class="d-flex flex-wrap gap-2 pt-3 border-top mt-2">
         <button type="button" class="btn btn-sm btn-plum" data-service="${s.id}">${tr("En savoir plus", "Learn more")}</button>
-        <a class="btn btn-sm btn-soft" href="${platform(`/demande?service=${s.id}`)}">${s.status === "soon" ? tr("Être informée", "Get notified") : tr("Faire une demande", "Make a request")}</a>
+        <a class="btn btn-sm btn-soft" href="${serviceAction(s).href}">${serviceAction(s).label}</a>
       </div>
     </div>
   </article>`;
@@ -200,6 +251,7 @@ function serviceModal(s) {
   <div class="modal-header border-0 pb-0">
     <div>
       <span class="badge rounded-pill ${s.branch === "pro" ? "bg-plum" : "text-bg-primary"}">${s.branch === "pro" ? "Jongoma Pro" : "Jongoma Impact"}</span>
+      <span class="badge rounded-pill text-bg-light border ms-1">${serviceState(s).label}</span>
       <h2 class="modal-title h3 mt-2">${escapeHtml(s.name)}</h2>
     </div>
     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="${tr("Fermer", "Close")}"></button>
@@ -208,16 +260,20 @@ function serviceModal(s) {
     <p class="label-sm text-magenta small fw-bold text-uppercase mb-1">${tr("Le problème", "The problem")}</p>
     <p class="fw-semibold">${escapeHtml(s.problem)}</p>
     <p class="text-muted">${escapeHtml(s.solution)}</p>
-    <p class="small"><strong>${s.branch === "pro" ? tr("Clients", "Clients") : tr("Financement", "Funding")}${tr(" :", ":")}</strong> ${escapeHtml(s.audience)}</p>
-    ${s.does.length ? `<h3 class="h6 mt-4">${tr("Ce que nous faisons", "What we do")}</h3><ul class="list-unstyled small">${list(s.does, "bi-check-circle-fill", "text-magenta")}</ul>` : ""}
-    ${s.delivers.length ? `<h3 class="h6 mt-3">${tr("Ce que vous recevez", "What you receive")}</h3><ul class="list-unstyled small">${list(s.delivers, "bi-gift-fill", "text-gold")}</ul>` : ""}
+    <p class="small"><strong>${s.branch === "pro" ? tr("Clients", "Clients") : tr("Financement recherché", "Funding sought")}${tr(" :", ":")}</strong> ${escapeHtml(s.audience)}</p>
+    ${s.branch === "impact" ? `<p class="small rounded-4 p-3 mb-3" style="background:#fdf4f8"><i class="bi bi-hourglass-split me-2"></i>${tr(
+      "Ce programme est conçu mais pas encore déployé. Nous recherchons des bailleurs et des partenaires pour lancer un premier pilote.",
+      "This programme is designed but not yet deployed. We are looking for donors and partners to launch a first pilot.",
+    )}</p>` : ""}
+    ${s.does.length ? `<h3 class="h6 mt-4">${s.branch === "impact" ? tr("Ce que le programme prévoit", "What the programme plans") : tr("Ce que nous faisons", "What we do")}</h3><ul class="list-unstyled small">${list(s.does, "bi-check-circle-fill", "text-magenta")}</ul>` : ""}
+    ${s.delivers.length ? `<h3 class="h6 mt-3">${s.branch === "impact" ? tr("Ce que les bénéficiaires recevront", "What beneficiaries will receive") : tr("Ce que vous recevez", "What you receive")}</h3><ul class="list-unstyled small">${list(s.delivers, "bi-gift-fill", "text-gold")}</ul>` : ""}
     ${s.sensitive ? `<p class="small rounded-4 p-3 bg-plum mt-3 mb-0"><i class="bi bi-lock-fill text-gold-light me-2"></i>${tr(
-      "Ce service traite des situations sensibles. Vos informations sont isolées, leur accès est limité et tracé.",
-      "This service handles sensitive situations. Your information is kept separate, and access to it is restricted and logged.",
+      "Ce programme concerne des situations sensibles : la confidentialité des personnes sera une condition de son déploiement.",
+      "This programme deals with sensitive situations: people's confidentiality will be a condition of its deployment.",
     )}</p>` : ""}
   </div>
   <div class="modal-footer border-0">
-    <a class="btn btn-primary" href="${platform(`/demande?service=${s.id}`)}">${s.status === "soon" ? tr("Être informée du lancement", "Get notified at launch") : tr("Faire une demande", "Make a request")} <i class="bi bi-arrow-right ms-1"></i></a>
+    <a class="btn btn-primary" href="${serviceAction(s).href}">${serviceAction(s).label} <i class="bi bi-arrow-right ms-1"></i></a>
   </div>`;
 }
 
@@ -235,7 +291,7 @@ function wireServiceModal() {
   });
 }
 
-const statusOrder = (s) => (s.status === "flagship" ? 0 : s.status === "soon" ? 2 : 1);
+const statusOrder = (s) => (s.branch === "pro" ? 0 : 1);
 
 /** Accueil : les services phares. */
 function renderFlagships() {

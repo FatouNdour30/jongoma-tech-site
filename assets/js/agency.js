@@ -125,13 +125,13 @@ const POLES = window.JG_EN?.POLES || [
     photo: "pro-bureau.jpg",
     title: "Infogérance & support IT",
     lead: "Vos outils à jour et suivis, pour que vous restiez concentrée sur votre métier.",
-    text: "Tout produit numérique a besoin d'être entretenu, mis à jour et corrigé rapidement en cas de problème. Externalisez votre support et votre maintenance : nous suivons vos outils régulièrement pour anticiper les pannes, et vous suivez chaque intervention dans votre Espace client.",
+    text: "Tout produit numérique a besoin d'être entretenu, mis à jour et corrigé rapidement en cas de problème. Externalisez votre support et votre maintenance : nous suivons vos outils régulièrement pour anticiper les pannes, et vous recevez un compte rendu de chaque intervention.",
     items: [
       "Gestion et suivi de vos sites internet",
       "Noms de domaine et messagerie professionnelle",
       "Formation à la prise en main et au webmastering",
       "Surveillance du parc informatique et configuration des postes",
-      "Suivi des incidents dans votre Espace client",
+      "Suivi des incidents et comptes rendus réguliers",
     ],
   },
 ];
@@ -166,12 +166,12 @@ const DOMAINS = window.JG_EN?.DOMAINS || [
 
 /* ---------- Méthodologie ---------- */
 const METHOD = window.JG_EN?.METHOD || [
-  { t: "Écouter", d: "Un premier échange pour comprendre votre besoin, votre public et vos contraintes. Une responsable vous répond sous 48 heures.", out: "Note de cadrage" },
+  { t: "Écouter", d: "Un premier échange pour comprendre votre besoin, votre public et vos contraintes. Nous visons une première réponse sous 48 heures ouvrées.", out: "Note de cadrage" },
   { t: "Comprendre le terrain", d: "Entretiens, enquêtes, visites : nous partons de la réalité de vos utilisatrices, pas de suppositions.", out: "Synthèse terrain" },
   { t: "Concevoir", d: "Parcours, maquettes et prototype interactif, validés avec vous avant de développer quoi que ce soit.", out: "Prototype et devis détaillé" },
-  { t: "Réaliser", d: "Développement par étapes courtes avec une démonstration à chaque étape. Pour les missions de terrain, nos agentes interviennent sur place.", out: "Démonstrations régulières" },
+  { t: "Réaliser", d: "Développement par étapes courtes avec une démonstration à chaque étape. Pour les missions de terrain, des agentes locales interviennent sur place.", out: "Démonstrations régulières" },
   { t: "Prouver", d: "Tests avec de vraies utilisatrices, recette, preuves horodatées. Rien n'est livré sans avoir été vérifié.", out: "Rapport de recette" },
-  { t: "Accompagner", d: "Mise en ligne, formation de vos équipes, maintenance et suivi de chaque intervention dans votre Espace client.", out: "Formation et support" },
+  { t: "Accompagner", d: "Mise en ligne, formation de vos équipes, maintenance et compte rendu de chaque intervention.", out: "Formation et support" },
 ];
 
 /* ---------- Nos réalisations : sites livrés et en ligne (captures dans assets/img/real-*.jpg) ---------- */
@@ -206,9 +206,7 @@ const REALISATIONS = window.JG_EN?.REALISATIONS || [
 const WORKS = [
   ...REALISATIONS.map((r) => ({ real: true, title: r.name, poles: r.poles, domain: r.sector, photo: r.shot, text: r.text, link: r.url, soon: !r.url })),
   ...(window.JG_EN?.WORKS_EXTRA || [
-  { real: true, title: "La plateforme Jongoma", poles: ["logiciel", "design", "cloud"], domain: "Réseaux sociaux & communautés", photo: "communaute.jpg",
-    text: "Espace client complet : demandes et dossiers suivis étape par étape, devis et reçus, pièces jointes, Communauté entre femmes et Discussions avec messages vocaux.", link: "plateforme.html" },
-  { real: true, title: "Le site Jongoma Tech", poles: ["design", "logiciel", "creation"], domain: "Design & prototypage", photo: "hero.jpg",
+  { real: true, internal: true, title: "Le site Jongoma Tech", poles: ["design", "logiciel", "creation"], domain: "Design & prototypage", photo: "hero.jpg",
     text: "Le site que vous visitez : direction artistique éditoriale, quiz d'orientation en deux questions, catalogue filtrable de nos services.", link: "index.html" },
   { title: "Boutique en ligne d'une coopérative de transformatrices", poles: ["logiciel", "marketing"], domain: "E-commerce", photo: "commercante.jpg",
     text: "Catalogue, commande sur mobile, paiement Wave et Orange Money, suivi des livraisons et campagne de lancement sur WhatsApp." },
@@ -267,8 +265,8 @@ const RESOURCES = window.JG_EN?.RESOURCES || [
       <li>Exigez un reçu pour chaque achat de matériaux.</li>
       <li>Faites vérifier les documents du terrain avant de commencer.</li>
       <li>Prévoyez une personne de confiance indépendante pour des visites surprises.</li>
-    </ul><p>C'est exactement ce que fait le service Jongoma Diaspora, avec des agentes vérifiées et un suivi dans votre dossier.</p>`,
-    cta: ["services.html?pole=impact", "Découvrir Jongoma Diaspora"] },
+    </ul><p>C'est l'approche du programme Jongoma Diaspora, actuellement en préparation.</p>`,
+    cta: ["services.html?pole=impact", "Découvrir le programme"] },
   { id: "lancement", type: "Checklist", icon: "bi-check2-square", title: "Avant de mettre un site en ligne",
     desc: "Les vérifications indispensables le jour du lancement.",
     body: `<ul>
@@ -299,7 +297,7 @@ const RESOURCES = window.JG_EN?.RESOURCES || [
       <li>Comparez les noms, dates et numéros avec d'autres documents officiels.</li>
       <li>Ne versez pas d'argent sur la seule base d'une copie.</li>
       <li>Conservez les échanges et les copies : ils pourront servir de preuve.</li>
-    </ul><p>Notre service d'authentification des documents vérifie pour vous auprès des sources officielles.</p>`,
+    </ul><p>Sur demande, Jongoma Tech accompagne les institutions qui veulent rendre leurs documents vérifiables.</p>`,
     cta: ["services.html?pole=pro", "Voir le service"] },
   { id: "glossaire", type: "Glossaire", icon: "bi-book", title: "Le numérique en mots simples",
     desc: "Les mots qu'on entend dans un projet digital, expliqués sans jargon.",
@@ -325,9 +323,9 @@ const POSTS = window.JG_EN?.POSTS || [
     body: [
       "Santé des mamans, violences, accès aux terres, école des filles, emploi, banque : les difficultés pèsent d'abord sur les femmes. Pourtant, les outils numériques sont rarement pensés pour elles, ni dans leur langue, ni pour leur téléphone, ni pour leur quotidien.",
       ["h", "Concevoir avec, pas pour"],
-      "Une équipe entièrement féminine, du terrain à la direction, ne garantit pas tout. Mais elle change la manière de poser les questions. Qui va utiliser cet outil ? Sait-elle lire ? A-t-elle un smartphone, du crédit, du temps ? Ces questions deviennent la base de chaque projet.",
+      "Une entreprise dirigée par des femmes ne garantit pas tout. Mais elle change la manière de poser les questions. Qui va utiliser cet outil ? Sait-elle lire ? A-t-elle un smartphone, du crédit, du temps ? Ces questions deviennent la base de chaque projet.",
       ["h", "Une entreprise, pas une association"],
-      "Jongoma Pro vend des services technologiques aux entreprises, aux ONG et aux institutions. Ces revenus, avec ceux des bailleurs, financent Jongoma Impact, nos programmes gratuits ou presque pour les femmes et les familles. C'est ce modèle qui nous permet de durer.",
+      "Jongoma Pro vend des services technologiques aux entreprises, aux ONG et aux institutions. Ces revenus, avec l'appui de bailleurs, financeront Jongoma Impact, nos programmes conçus pour être gratuits ou presque pour les femmes et les familles. C'est ce modèle qui doit nous permettre de durer.",
       "Notre devise résume notre exigence : ce que Jongoma promet, Jongoma le prouve.",
     ] },
   { slug: "site-ou-application", cat: "Ingénierie", photo: "tech-code.jpg", read: 5,
@@ -349,9 +347,9 @@ const POSTS = window.JG_EN?.POSTS || [
     body: [
       "Beaucoup d'outils numériques supposent qu'on lit facilement le français et qu'on a une bonne connexion. Pour une grande partie des femmes que nous servons, ce n'est pas le cas.",
       ["h", "La voix d'abord"],
-      "Un message vocal est souvent plus naturel qu'un formulaire. Sur la plateforme Jongoma, on peut nous écrire, mais aussi nous parler.",
+      "Un message vocal est souvent plus naturel qu'un formulaire. C'est pourquoi nous l'intégrons dès la conception de nos outils.",
       ["h", "Des images qui parlent"],
-      "Pictogrammes, couleurs et photos réelles aident à comprendre sans lire. Chaque icône est testée avec de vraies utilisatrices.",
+      "Pictogrammes, couleurs et photos réelles aident à comprendre sans lire. Les tester avec de vraies utilisatrices est indispensable.",
       ["h", "Léger, toujours"],
       "Des pages qui chargent vite, des images compressées, des fonctions qui marchent hors ligne et se synchronisent ensuite. C'est moins spectaculaire, mais c'est ce qui fait qu'un outil est utilisé.",
     ] },
@@ -374,9 +372,9 @@ const POSTS = window.JG_EN?.POSTS || [
     body: [
       "Beaucoup de programmes sociaux peinent à montrer ce qu'ils ont réellement changé. Ce n'est pas toujours un manque de résultats, c'est souvent un manque de preuves.",
       ["h", "Collecter au moment où ça se passe"],
-      "Une photo prise sur place, avec la date, l'heure et la position, vaut plus qu'un tableau rempli après coup. Nos enquêtrices collectent ces preuves même sans réseau.",
+      "Une photo prise sur place, avec la date, l'heure et la position, vaut plus qu'un tableau rempli après coup. Des outils de collecte hors ligne permettent de recueillir ces preuves même sans réseau.",
       ["h", "Rendre la preuve consultable"],
-      "Le bailleur ou le donateur suit l'avancement dans son espace, sans attendre le rapport final.",
+      "Le bailleur ou le donateur peut alors suivre l'avancement sans attendre le rapport final.",
       ["h", "Ne jamais embellir"],
       "Notre règle : un seul chiffre faux peut détruire la confiance. Nous préférons un résultat modeste et vrai à une promesse spectaculaire.",
     ] },
@@ -388,7 +386,7 @@ const POSTS = window.JG_EN?.POSTS || [
       ["h", "Vérifier à la source"],
       "La seule vérification fiable se fait auprès de l'autorité qui a délivré le document : mairie, tribunal, université, service des domaines. C'est long quand on est loin, ou quand on ne sait pas à qui s'adresser.",
       ["h", "Ce que nous faisons"],
-      "Notre service d'authentification se charge de ces vérifications pour vous et vous remet une réponse documentée. Il s'adresse aux particuliers, aux entreprises qui recrutent et aux institutions.",
+      "Sur demande, Jongoma Tech accompagne les institutions qui veulent rendre leurs documents vérifiables, par exemple avec un QR code relié à un registre sécurisé.",
     ] },
 ];
 
@@ -460,9 +458,9 @@ function renderRealisations() {
         </div>
       </article>`;
       const frameInner = `
-          <span class="sc-bar"><i></i><i></i><i></i><span class="sc-url">${r.url ? `<i class="bi bi-lock-fill"></i> ${host(r.url)}` : `<i class="bi bi-hourglass-split"></i> ${tr("Bientôt en ligne", "Coming online soon")}`}</span></span>
+          <span class="sc-bar"><i></i><i></i><i></i><span class="sc-url">${r.url ? `<i class="bi bi-lock-fill"></i> ${host(r.url)}` : `<i class="bi bi-hourglass-split"></i> ${tr("En cours de livraison", "Delivery in progress")}`}</span></span>
           <span class="rc-shot"><img src="assets/img/${r.shot}" alt="${tr("Page d'accueil de", "Home page of")} ${escA(r.name)}" loading="lazy"></span>
-          ${r.url ? `<span class="sc-visit">${tr("Visiter le site", "Visit the site")} <i class="bi bi-arrow-up-right"></i></span>` : `<span class="sc-visit rc-soon">${tr("Bientôt disponible", "Coming soon")}</span>`}`;
+          ${r.url ? `<span class="sc-visit">${tr("Visiter le site", "Visit the site")} <i class="bi bi-arrow-up-right"></i></span>` : `<span class="sc-visit rc-soon">${tr("En cours de livraison", "Delivery in progress")}</span>`}`;
       return `
       <article class="rc ${i % 2 ? "rc-flip" : ""} reveal">
         ${r.url ? `<a class="rc-frame" href="${r.url}" target="_blank" rel="noopener" aria-label="${tr("Visiter", "Visit")} ${escA(r.name)} (${tr("nouvel onglet", "new tab")})">${frameInner}</a>` : `<div class="rc-frame">${frameInner}</div>`}
@@ -472,7 +470,7 @@ function renderRealisations() {
           <h3 class="font-display text-cream mb-3">${escA(r.name)}</h3>
           <p class="text-soft mb-4">${escA(r.text)}</p>
           <div class="d-flex flex-wrap gap-2 mb-4">${r.poles.map((id) => `<span class="tag-ed">${escA(poleById(id).title)}</span>`).join("")}</div>
-          ${r.url ? `<a class="btn btn-gold" href="${r.url}" target="_blank" rel="noopener">${tr("Visiter", "Visit")} ${escA(host(r.url))} <i class="bi bi-arrow-up-right ms-1"></i></a>` : `<span class="btn btn-ghost disabled" aria-disabled="true"><i class="bi bi-hourglass-split me-1"></i> ${tr("Lien bientôt disponible", "Link coming soon")}</span>`}
+          ${r.url ? `<a class="btn btn-gold" href="${r.url}" target="_blank" rel="noopener">${tr("Visiter", "Visit")} ${escA(host(r.url))} <i class="bi bi-arrow-up-right ms-1"></i></a>` : `<span class="btn btn-ghost disabled" aria-disabled="true"><i class="bi bi-hourglass-split me-1"></i> ${tr("Pas encore en ligne", "Not online yet")}</span>`}
         </div>
       </article>`;
     }).join("");
@@ -530,22 +528,28 @@ function renderPortfolio() {
   const draw = () => {
     filters.querySelectorAll("[data-work]").forEach((b) => b.classList.toggle("active", b.dataset.work === current));
     const list = WORKS.filter((w) => current === "all" || w.poles.includes(current));
-    grid.innerHTML = list
-      .map(
-        (w, i) => `
+    const card = (w) => `
       <article class="work reveal">
         <div class="work-ph"><img src="assets/img/${w.photo}" alt="" loading="lazy">
-          <span class="work-badge ${w.real ? "real" : ""}">${w.real ? `<i class="bi bi-patch-check-fill me-1"></i>${tr("Réalisation Jongoma", "Built by Jongoma")}` : tr("Projet type", "Sample project")}</span></div>
+          <span class="work-badge ${w.real ? "real" : ""}">${w.internal ? tr("Projet interne", "In-house project") : w.real ? `<i class="bi bi-patch-check-fill me-1"></i>${tr("Réalisation Jongoma", "Built by Jongoma")}` : tr("Exemple illustratif", "Illustrative example")}</span></div>
         <div class="work-body">
           <p class="small-label mb-2">${escA(w.domain)}</p>
           <h3 class="font-display h5 text-cream">${escA(w.title)}</h3>
           <p class="small text-soft">${escA(w.text)}</p>
           <div class="d-flex flex-wrap gap-1 mb-3">${w.poles.map((id) => `<span class="tag-ed">${escA(poleById(id).title)}</span>`).join("")}</div>
-          ${w.soon ? `<span class="link-gold opacity-75"><i class="bi bi-hourglass-split me-1"></i>${tr("Bientôt en ligne", "Coming online soon")}</span>` : w.link ? (w.link.startsWith("http") ? `<a class="link-gold" href="${w.link}" target="_blank" rel="noopener">${tr("Visiter le site", "Visit the site")} <i class="bi bi-box-arrow-up-right"></i></a>` : `<a class="link-gold" href="${page(w.link)}">${tr("Voir", "View")} <i class="bi bi-arrow-right"></i></a>`) : `<a class="link-gold" href="${page("projet.html")}?pole=${w.poles[0]}">${tr("Un projet similaire ?", "A similar project?")} <i class="bi bi-arrow-right"></i></a>`}
+          ${w.soon ? `<span class="link-gold opacity-75"><i class="bi bi-hourglass-split me-1"></i>${tr("En cours de livraison", "Delivery in progress")}</span>` : w.link ? (w.link.startsWith("http") ? `<a class="link-gold" href="${w.link}" target="_blank" rel="noopener">${tr("Visiter le site", "Visit the site")} <i class="bi bi-box-arrow-up-right"></i></a>` : `<a class="link-gold" href="${page(w.link)}">${tr("Voir", "View")} <i class="bi bi-arrow-right"></i></a>`) : `<a class="link-gold" href="${page("projet.html")}?pole=${w.poles[0]}">${tr("Un projet similaire ?", "A similar project?")} <i class="bi bi-arrow-right"></i></a>`}
         </div>
-      </article>`,
-      )
-      .join("");
+      </article>`;
+    const real = list.filter((w) => w.real);
+    const examples = list.filter((w) => !w.real);
+    grid.innerHTML =
+      (real.length ? `<h2 class="works-title">${tr("Réalisations", "Our work")}</h2>${real.map(card).join("")}` : "") +
+      (examples.length
+        ? `<div class="works-title"><h2 class="mb-1">${tr("Exemples illustratifs", "Illustrative examples")}</h2><p class="small text-soft mb-0">${tr(
+            "Ce que nous pouvons construire pour vous. Ce ne sont ni des projets livrés, ni des références clients.",
+            "What we can build for you. These are neither delivered projects nor client references.",
+          )}</p></div>${examples.map(card).join("")}`
+        : "");
     observeReveals();
   };
   filters.addEventListener("click", (e) => {
@@ -689,7 +693,7 @@ function renderBlog() {
   observeReveals();
 }
 
-/** Formulaire « J'ai un projet » : résumé en direct, puis demande sur la plateforme. */
+/** Formulaire « J'ai un projet » : résumé en direct, puis envoi (voir sendMessage dans main.js). */
 function wireProjectForm() {
   const form = document.getElementById("project-form");
   if (!form) return;
@@ -699,8 +703,12 @@ function wireProjectForm() {
   ).join("");
   const domain = document.getElementById("pf-domain");
   DOMAINS.forEach(([, label]) => domain.append(new Option(label, label)));
-  const preset = new URLSearchParams(location.search).get("pole");
+  const q = new URLSearchParams(location.search);
+  const preset = q.get("pole");
   if (preset) poleBox.querySelector(`input[value="${CSS.escape(preset)}"]`)?.setAttribute("checked", "");
+  const svc = (window.JONGOMA_SERVICES || []).find((x) => x.id === q.get("service"));
+  const desc = form.querySelector("[name=description]");
+  if (svc || q.get("besoin")) desc.value = [svc ? `${tr("Service", "Service")}${tr(" :", ":")} ${svc.name}` : "", q.get("besoin") || ""].filter(Boolean).join("\n");
 
   const summary = document.getElementById("pf-summary");
   const compose = () => {
@@ -713,7 +721,7 @@ function wireProjectForm() {
       d.get("when") ? `${tr("Délai", "Timing")}${tr(" :", ":")} ${d.get("when")}` : "",
       d.get("budget") ? `Budget : ${d.get("budget")}` : "",
       d.get("org") ? `${tr("Organisation", "Organisation")}${tr(" :", ":")} ${d.get("org")}` : "",
-      d.get("name") ? `Contact${tr(" :", ":")} ${d.get("name")}${d.get("email") ? ` · ${d.get("email")}` : ""}` : "",
+      d.get("name") ? `Contact${tr(" :", ":")} ${d.get("name")}${d.get("email") ? ` · ${d.get("email")}` : ""}${d.get("phone") ? ` · ${d.get("phone")}` : ""}` : "",
     ].filter(Boolean);
     return { poles, lines };
   };
@@ -728,13 +736,15 @@ function wireProjectForm() {
   refresh();
   form.addEventListener("submit", (e) => {
     e.preventDefault();
+    const email = form.querySelector("[name=email]");
+    const phone = form.querySelector("[name=phone]");
+    email.setCustomValidity(email.value.trim() || phone.value.trim() ? "" : tr("Indiquez un e-mail ou un numéro de téléphone.", "Please give an email or a phone number."));
     if (!form.reportValidity()) return;
-    const params = new URLSearchParams({ besoin: compose().lines.join("\n") });
-    window.location.href = platform(`/demande?${params}`);
+    sendMessage(tr("J'ai un projet — Jongoma Tech", "New project — Jongoma Tech"), compose().lines);
   });
 }
 
-/** Formulaire « Devenez notre partenaire » : la proposition s'ouvre sur la plateforme, déjà rédigée. */
+/** Formulaire « Devenez notre partenaire » : la proposition est envoyée, déjà rédigée. */
 const PARTNER_TYPES = window.JG_EN?.PARTNER_TYPES || [
   ["bi-bank", "Bailleur / fondation"],
   ["bi-building", "Entreprise / RSE"],
@@ -761,7 +771,7 @@ function wirePartnerForm() {
     error.hidden = true;
     const d = new FormData(form);
     const line = (label, key) => (d.get(key) ? `${label}${tr(" :", ":")} ${String(d.get(key)).trim()}` : "");
-    const besoin = [
+    const lines = [
       `[${tr("Partenariat", "Partnership")}] ${d.get("type")}`,
       String(d.get("message")).trim(),
       line("Organisation", "org"),
@@ -769,8 +779,8 @@ function wirePartnerForm() {
       line(tr("Pays", "Country"), "country"),
       line("E-mail", "email"),
       line(tr("Téléphone", "Phone"), "phone"),
-    ].filter(Boolean).join("\n");
-    window.location.href = platform(`/demande?${new URLSearchParams({ besoin })}`);
+    ];
+    sendMessage(tr("Proposition de partenariat — Jongoma Tech", "Partnership proposal — Jongoma Tech"), lines);
   });
 }
 
