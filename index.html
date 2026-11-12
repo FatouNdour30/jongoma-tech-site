@@ -299,15 +299,31 @@
     <!-- ============ Services ============ -->
     <section class="section band-cream">
       <div class="container">
-        <div class="d-flex flex-wrap justify-content-between align-items-end gap-3 mb-4 reveal">
-          <div>
-            <p class="kicker"><span data-count="total">26</span> services</p>
-            <h2 class="display-ed text-cream mt-3" style="font-size:clamp(2rem,4vw,3.2rem)">Chaque service part d'un mal réel</h2>
-            <div class="tabs-ed d-flex gap-2 mt-3">
-              <button type="button" class="tab-ed active" data-svc-tab="pro">Jongoma Pro · <span data-count="pro">12</span></button>
-              <button type="button" class="tab-ed" data-svc-tab="impact">Jongoma Impact (en préparation) · <span data-count="impact">14</span></button>
-            </div>
+        <div class="reveal mb-4" style="max-width:46rem">
+          <p class="kicker">Nos services</p>
+          <h2 class="display-ed text-cream mt-3" style="font-size:clamp(2rem,4vw,3.2rem)">Chaque solution répond à un besoin réel.</h2>
+          <p class="text-soft mt-3 mb-0">Nous ne vendons pas de la technologie pour la technologie. Chaque fiche commence par le besoin auquel elle répond, et indique son statut réel : ce que nous proposons aujourd'hui, et ce que nous préparons.</p>
+        </div>
+        <div class="svc-stats reveal">
+          <div class="svc-stat total">
+            <strong data-count="total">26</strong>
+            <span>Solutions et programmes pensés pour répondre aux réalités du terrain.</span>
           </div>
+          <button type="button" class="svc-stat active" data-svc-tab="pro" aria-pressed="true">
+            <strong data-count="pro">12</strong>
+            <span class="t">Jongoma Pro</span>
+            <span>Services numériques pour les organisations.</span>
+            <em class="status-pill ok">Proposés aujourd'hui, sur devis</em>
+          </button>
+          <button type="button" class="svc-stat" data-svc-tab="impact" aria-pressed="false">
+            <strong data-count="impact">14</strong>
+            <span class="t">Jongoma Impact</span>
+            <span>Programmes à impact social, conçus pour les femmes et leurs familles.</span>
+            <em class="status-pill prep">En préparation : pas encore déployés</em>
+          </button>
+        </div>
+        <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+          <p class="kicker mb-0">Jongoma Tech · Innover. Connecter. Impacter.</p>
           <div class="d-flex gap-2 align-items-center">
             <a href="services.html" class="btn btn-ghost me-2">Tout le catalogue</a>
             <div class="carousel-nav d-flex gap-2" data-carousel="svc-track">

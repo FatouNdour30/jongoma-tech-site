@@ -798,4 +798,20 @@ h2.works-title, .works-title h2 { font-family: "Cinzel", serif; font-size: 1.6re
 .illus::after { content: "Photo d'illustration"; position: absolute; left: .75rem; bottom: .75rem; z-index: 3; font-size: .68rem; font-weight: 600; padding: .2rem .6rem; border-radius: 999px; background: rgba(22,4,22,.72); color: #f6ecdc; pointer-events: none; }
 html[lang="en"] .illus::after { content: "Illustrative photo"; }
 .arches.illus::after { bottom: -1.5rem; left: 0; }
+/* Section Services : 26 / 12 / 14 */
+.svc-stats { display: grid; grid-template-columns: 1.1fr 1fr 1fr; gap: 1rem; margin-bottom: 1.75rem; }
+.svc-stat { display: flex; flex-direction: column; gap: .35rem; text-align: left; padding: 1.4rem 1.5rem; border-radius: 1.25rem; border: 1px solid var(--ed-line-strong, rgba(33,7,33,.24)); background: #fff; color: var(--ed-ink, #210721); font: inherit; transition: border-color .2s, box-shadow .2s, transform .2s; }
+.svc-stat strong { font-family: "Cinzel", serif; font-size: clamp(2.4rem, 4vw, 3.2rem); line-height: 1; color: var(--jg-magenta); }
+.svc-stat .t { font-weight: 700; font-size: 1.05rem; }
+.svc-stat span:not(.t) { color: var(--ed-soft, rgba(33,7,33,.66)); font-size: .92rem; }
+.svc-stat em { font-style: normal; align-self: flex-start; margin-top: .4rem; }
+.svc-stat.total { background: #210721; color: #f6ecdc; border-color: #210721; justify-content: center; }
+.svc-stat.total strong { color: #e2c488; font-size: clamp(3rem, 5vw, 4rem); }
+.svc-stat.total span { color: rgba(246,236,220,.8); }
+button.svc-stat { cursor: pointer; }
+button.svc-stat:hover { transform: translateY(-2px); }
+button.svc-stat.active { border-color: var(--jg-magenta); box-shadow: 0 0 0 2px var(--jg-magenta) inset, 0 14px 30px -18px rgba(200,4,106,.5); }
+@media (max-width: 767.98px) { .svc-stats { grid-template-columns: 1fr 1fr; } .svc-stat.total { grid-column: 1 / -1; } }
+@media (max-width: 479.98px) { .svc-stats { grid-template-columns: 1fr; } }
+.need-label { display: block; font-size: .68rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--jg-magenta); margin-bottom: .2rem; }
 .notice-soon { display: inline-block; font-size: .85rem; font-weight: 600; padding: .45rem .9rem; border-radius: 999px; background: rgba(200,4,106,.08); color: var(--jg-magenta); }

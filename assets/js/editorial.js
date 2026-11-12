@@ -162,7 +162,7 @@
             <span class="badge-status state-${serviceState(s).cls}">${serviceState(s).label}</span></div>
           <div class="p-4 d-flex flex-column flex-grow-1">
             <h3 class="font-display h5 mb-2">${esc(s.name)}</h3>
-            <p class="small text-muted flex-grow-1 mb-3">${esc(s.problem)}</p>
+            <p class="small text-muted flex-grow-1 mb-3"><span class="need-label">${tr("Le besoin", "The need")}</span>${esc(s.problem)}</p>
             <div class="d-flex gap-2">
               <button type="button" class="btn btn-sm btn-plum" data-service="${s.id}">${tr("Détails", "Details")}</button>
               <a class="btn btn-sm btn-soft" href="${serviceAction(s).href}">${s.branch === "impact" ? tr("Soutenir", "Support") : tr("Devis", "Quote")}</a>
@@ -175,7 +175,7 @@
     };
     document.querySelectorAll("[data-svc-tab]").forEach((t) =>
       t.addEventListener("click", () => {
-        document.querySelectorAll("[data-svc-tab]").forEach((x) => x.classList.toggle("active", x === t));
+        document.querySelectorAll("[data-svc-tab]").forEach((x) => { x.classList.toggle("active", x === t); x.setAttribute("aria-pressed", x === t); });
         draw(t.dataset.svcTab);
       }),
     );
